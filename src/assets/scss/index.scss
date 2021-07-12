@@ -1,0 +1,27 @@
+@import "~react-perfect-scrollbar/dist/css/styles.css";
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background-color: #f4f6f8;
+}
+
+/* stylelint-disable-next-line selector-max-id */
+#root {
+  height: 100%;
+}
+
+:not(pre) > code {
+  padding: 2px 4px;
+  font-family: "Roboto Mono", "Noto Mono", Inconsolata, Monaco, Consolas, "Courier New", Courier, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  word-break: normal;
+  word-spacing: normal;
+  white-space: pre;
+  direction: ltr;
+  background-color: #eee;
+}

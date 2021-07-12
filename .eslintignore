@@ -1,0 +1,8 @@
+config
+public
+scripts
+service-worker.ts
+serviceWorkerRegistration.ts
+reportWebVitals.ts
+src/setupProxy.js
+src/setupTests.ts
