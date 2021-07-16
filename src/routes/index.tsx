@@ -80,6 +80,21 @@ const routes: RouteConfig[] = [
         component: lazy(() => import(/* webpackChunkName: 'account' */ 'views/TableList')),
       },
       {
+        path: '/card-list',
+        exact: true,
+        component: lazy(() => import(/* webpackChunkName: 'account' */ 'views/Cardlist')),
+      },
+      {
+        path: '/formpage',
+        exact: true,
+        component: lazy(() => import(/* webpackChunkName: 'account' */ 'views/Frompage')),
+      },
+      {
+        path: '/hello',
+        exact: true,
+        component: lazy(() => import(/* webpackChunkName: 'hello' */ 'views/Hello')),
+      },
+      {
         component: () => <Redirect to="/errors/error-404" />,
       },
     ],

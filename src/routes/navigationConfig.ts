@@ -3,6 +3,9 @@ import {
   AccountCircleOutlined as AccountCircleOutlinedIcon,
   ReceiptOutlined as ReceiptOutlinedIcon,
   DonutLargeOutlined as DonutLargeOutlinedIcon,
+  EmojiPeople as EmojiPeopleIcon,
+  Dashboard as DashboardIcon,
+  ListAlt as ListAltIcon,
 } from '@material-ui/icons';
 import { NavigationConfig } from 'types';
 
@@ -23,6 +26,24 @@ const navigationConfig: NavigationConfig = [
         title: '表格列表',
         href: '/table-list',
         icon: ReceiptOutlinedIcon,
+        permission: ['GENERAL_USER', 'ADMINISTRATOR'],
+      },
+      {
+        title: 'Hello World',
+        href: '/hello',
+        icon: EmojiPeopleIcon,
+        permission: ['GENERAL_USER', 'ADMINISTRATOR'],
+      },
+      {
+        title: '卡片列表',
+        href: '/card-list',
+        icon: DashboardIcon,
+        permission: ['GENERAL_USER', 'ADMINISTRATOR'],
+      },
+      {
+        title: '应聘表单',
+        href: '/formpage',
+        icon: ListAltIcon,
         permission: ['GENERAL_USER', 'ADMINISTRATOR'],
       },
       {
