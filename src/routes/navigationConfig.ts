@@ -47,6 +47,19 @@ const navigationConfig: NavigationConfig = [
         permission: ['GENERAL_USER', 'ADMINISTRATOR'],
       },
       {
+        title: 'HelloWorld',
+        href: '/hello-world',
+        icon: ReceiptOutlinedIcon,
+        permission: ['GENERAL_USER', 'ADMINISTRATOR'],
+      },
+      {
+        title: '招聘表',
+        href: '/recruitment',
+        icon: ReceiptOutlinedIcon,
+
+        permission: ['GENERAL_USER', 'ADMINISTRATOR'],
+      },
+      {
         title: '个人中心',
         href: '/account',
         icon: AccountCircleOutlinedIcon,
