@@ -42,6 +42,51 @@ Redux Toolkit 是一个 Redux 的工具集，用于简化 Redux 的操作，它�
 
 由于 React 对 TypeScript 的支持非常好，由微软官方提供的支持，在这方面而言，优于 Vue 2.x 甚至是 Vue 3.x。TypeScript 可以在运行前识别某些类型的问题。还可以通过增加自动补全等功能来改善开发者的工作流程。基于这些原因，在大型项目中使用 TypeScript 是一个更好的选择。
 
+### 相关依赖
+
+| Package | License |
+|---------|---------|
+| [accounting](http://openexchangerates.github.io/accounting.js/) | MIT |
+| [async-es](https://caolan.github.io/async/v3/) | MIT |
+| [axios](https://github.com/axios/axios) | MIT |
+| [crypto-js](http://github.com/brix/crypto-js) | MIT |
+| [date-fns](https://date-fns.org/) | MIT |
+| [draft-js](http://draftjs.org/) | MIT |
+| [fontawesome](https://fontawesome.com/) | MIT |
+| [fullcalendar](https://fullcalendar.io/) | MIT |
+| [js-cookie](https://github.com/js-cookie/js-cookie) | MIT |
+| [js-file-download](https://github.com/kennethjiang/js-file-download) | MIT |
+| [localforage](https://localforage.github.io/localForage/) | Apache-2.0 |
+| [lodash](https://lodash.com/) | MIT |
+| [lottie-web](https://airbnb.io/lottie) | MIT |
+| [material-table](https://material-table.com/) | MIT |
+| [material-ui-confirm](https://github.com/jonatanklosko/material-ui-confirm) | MIT |
+| [mathjs](https://mathjs.org/) | Apache-2.0 |
+| [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) | WTFPL |
+| [notistack](https://www.iamhosseindhv.com/notistack) | MIT |
+| [nzh](http://cnwhy.github.io/nzh) | MIT |
+| [print-js](https://printjs.crabbly.com/) | MIT |
+| [prismjs](https://prismjs.com/) | MIT |
+| [qs](https://github.com/ljharb/qs) | BSD-3-Clause |
+| [react-apexcharts](https://www.npmjs.com/package/react-apexcharts) | MIT |
+| [react-beautiful-dnd](https://react-beautiful-dnd.netlify.com) | Apache-2.0 |
+| [react-big-calendar](https://jquense.github.io/react-big-calendar/examples/index.html) | MIT |
+| [react-draggable](https://github.com/react-grid-layout/react-draggable) | MIT |
+| [react-dropzone](https://react-dropzone.js.org/) | MIT |
+| [react-helmet](https://github.com/nfl/react-helmet) | MIT |
+| [react-image-file-resizer](https://github.com/onurzorluer/react-image-file-resizer) | MIT |
+| [react-infinite-scroll-component](https://react-infinite-scroll-component.netlify.com) | MIT |
+| [react-markdown](https://remarkjs.github.io/react-markdown/) | MIT |
+| [react-modal-image](https://aautio.github.io/react-modal-image/) | MIT |
+| [react-number-format](https://github.com/s-yadav/react-number-format) | MIT |
+| [react-perfect-scrollbar](https://www.npmjs.com/package/react-perfect-scrollbar) | MIT |
+| [react-window](react-window.now.sh) | MIT |
+| [tai-password-strength](https://tests-always-included.github.io/password-strength/) | MIT |
+| [uuid](https://github.com/uuidjs/uuid) | MIT |
+| [validate.js](http://validatejs.org/) | MIT |
+| [web-vitals](https://web.dev/vitals) | MIT |
+| [workbox](https://developers.google.com/web/tools/workbox) | MIT |
+
 ## 目录结构
 
 ```
