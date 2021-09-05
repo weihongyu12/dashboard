@@ -29,37 +29,6 @@ const navigationConfig: NavigationConfig = [
         permission: ['GENERAL_USER', 'ADMINISTRATOR'],
       },
       {
-        title: 'Hello World',
-        href: '/hello',
-        icon: EmojiPeopleIcon,
-        permission: ['GENERAL_USER', 'ADMINISTRATOR'],
-      },
-      {
-        title: '卡片列表',
-        href: '/card-list',
-        icon: DashboardIcon,
-        permission: ['GENERAL_USER', 'ADMINISTRATOR'],
-      },
-      {
-        title: '应聘表单',
-        href: '/formpage',
-        icon: ListAltIcon,
-        permission: ['GENERAL_USER', 'ADMINISTRATOR'],
-      },
-      {
-        title: 'HelloWorld',
-        href: '/hello-world',
-        icon: ReceiptOutlinedIcon,
-        permission: ['GENERAL_USER', 'ADMINISTRATOR'],
-      },
-      {
-        title: '招聘表',
-        href: '/recruitment',
-        icon: ReceiptOutlinedIcon,
-
-        permission: ['GENERAL_USER', 'ADMINISTRATOR'],
-      },
-      {
         title: '个人中心',
         href: '/account',
         icon: AccountCircleOutlinedIcon,
