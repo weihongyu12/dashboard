@@ -1,20 +1,69 @@
 import React, {
   useCallback,
   useEffect,
+  useReducer,
   FC,
 } from 'react';
 import { Button } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import { useSnackbar } from 'notistack';
-import { useAppSelector } from 'store';
 
-const ServiceWorker: FC = () => {
-  const sw = useAppSelector((state) => state.sw);
+type Config = {
+  onSuccess?: (registration: ServiceWorkerRegistration) => void;
+  onUpdate?: (registration: ServiceWorkerRegistration) => void;
+};
+
+type RegisterHandler = (config: Config) => void;
+type UnRegisterHandler = (config: Config) => void;
+
+interface ServiceWorkerRegistrationType {
+  register: RegisterHandler;
+  unregister: UnRegisterHandler;
+}
+
+export interface ServiceWorkerProps {
+  serviceWorker: ServiceWorkerRegistrationType;
+}
+
+export interface SwStoreState {
+  serviceWorkerInitialized: boolean;
+  serviceWorkerUpdated: boolean;
+  serviceWorkerRegistration: ServiceWorkerRegistration | null;
+}
+
+export type SwAction = { type: 'init' } | { type: 'update', payload: ServiceWorkerRegistration | null };
+
+const initialState: SwStoreState = {
+  serviceWorkerInitialized: false,
+  serviceWorkerUpdated: false,
+  serviceWorkerRegistration: null,
+};
+
+const reducer = (state: SwStoreState, action: SwAction) => {
+  switch (action.type) {
+    case 'init':
+      return {
+        ...state,
+        serviceWorkerInitialized: true,
+      };
+    case 'update':
+      return {
+        ...state,
+        serviceWorkerUpdated: true,
+        serviceWorkerRegistration: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+const ServiceWorker: FC<ServiceWorkerProps> = ({ serviceWorker }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
   const {
     serviceWorkerInitialized: isServiceWorkerInitialized,
     serviceWorkerUpdated: isServiceWorkerUpdated,
     serviceWorkerRegistration,
-  } = sw;
+  } = state;
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -32,6 +81,16 @@ const ServiceWorker: FC = () => {
       }
     }
   }, [serviceWorkerRegistration]);
+
+  useEffect(() => {
+    // If you want your app to work offline and load faster, you can change
+    // unregister() to register() below. Note this comes with some pitfalls.
+    // Learn more about service workers: https://cra.link/PWA
+    serviceWorker.register({
+      onSuccess: () => dispatch({ type: 'init' }),
+      onUpdate: (reg) => dispatch({ type: 'update', payload: reg }),
+    });
+  }, [serviceWorker]);
 
   useEffect(() => {
     if (isServiceWorkerInitialized) {

@@ -1,11 +1,10 @@
-import React, { FC } from 'react';
+import React, { useContext, FC } from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/styles';
 import { Theme } from '@material-ui/core/styles';
 import { format } from 'date-fns';
 import zhHansLocale from 'date-fns/locale/zh-CN';
-import { useAppSelector } from 'store';
-import { AuthGuard, Page } from 'components';
+import { AuthGuard, Page, SessionContext } from 'components';
 import { ReactComponent as HappySvg } from './assets/undraw_happy_2021_h01d.svg';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
@@ -27,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 const Home: FC = () => {
   const classes = useStyles();
 
-  const session = useAppSelector((state) => state.session);
+  const { session } = useContext(SessionContext);
 
   return (
     <AuthGuard roles={['ADMINISTRATOR']}>

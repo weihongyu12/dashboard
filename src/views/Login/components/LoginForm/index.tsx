@@ -1,5 +1,6 @@
 import React, {
   useCallback,
+  useContext,
   useState,
   useEffect,
   FC,
@@ -27,8 +28,8 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import qs from 'qs';
 import { isString } from 'lodash';
-import { useAppDispatch } from 'store';
-import { loginAsync } from 'reducers';
+import { SessionContext } from 'components';
+import { authService } from 'service';
 
 export interface LoginFormProps {
   className?: string;
@@ -121,9 +122,9 @@ const LoginForm: FC<LoginFormProps> = ({
   className = '',
 }) => {
   const classes = useStyles();
+  const { session, onSetSession } = useContext(SessionContext);
   const history = useHistory();
   const location = useLocation();
-  const dispatch = useAppDispatch();
 
   const [formState, setFormState] = useState<FormState>({
     isValid: false,
@@ -159,13 +160,21 @@ const LoginForm: FC<LoginFormProps> = ({
   const fetchLogin = useCallback(async (username: string, password: string) => {
     setLoading(true);
     try {
-      const resultAction = await dispatch(loginAsync({ username, password }));
-      localStorage.setItem('accessToken', resultAction.payload as string);
+      const response = await authService.login({
+        username,
+        password,
+      });
+      onSetSession({
+        ...session,
+        loggedIn: true,
+        accessToken: response.accessToken,
+      });
+      localStorage.setItem('accessToken', response.accessToken);
       redirectPage();
     } finally {
       setLoading(false);
     }
-  }, [dispatch, redirectPage]);
+  }, [onSetSession, redirectPage, session]);
 
   const storeCredential = () => {
     const { username, password } = formState.values;

@@ -3,13 +3,9 @@ import {
   ThunkAction,
   Action,
 } from '@reduxjs/toolkit';
-import { swReducer, sessionReducer } from 'reducers';
 
 export const store = configureStore({
-  reducer: {
-    sw: swReducer,
-    session: sessionReducer,
-  },
+  reducer: {},
 });
 
 export * from './hooks';

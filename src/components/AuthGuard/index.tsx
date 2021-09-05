@@ -1,12 +1,13 @@
 import React, {
+  useContext,
   useEffect,
   FC,
   ReactNode,
 } from 'react';
 import { useHistory, useLocation } from 'react-router';
-import { useAppSelector, useAppDispatch } from 'store';
-import { login, getUserInfoAsync } from 'reducers';
 import { Role } from 'types';
+import { authService } from 'service';
+import SessionContext from '../SessionContext';
 
 export interface AuthGuardProps {
   /**
@@ -20,21 +21,24 @@ export interface AuthGuardProps {
 }
 
 const AuthGuard: FC<AuthGuardProps> = ({ roles, children }) => {
-  const session = useAppSelector((state) => state.session);
-  const dispatch = useAppDispatch();
+  const { session, onSetSession } = useContext(SessionContext);
   const history = useHistory();
   const location = useLocation();
 
   useEffect(() => {
     const fetchUserInfo = async () => {
-      dispatch(getUserInfoAsync());
+      const response = await authService.user();
+      onSetSession({
+        ...session,
+        user: response,
+      });
     };
 
     const sessionUser = session.user;
     if (session.loggedIn && !(sessionUser?.username)) {
       fetchUserInfo();
     }
-  }, [dispatch, history, session.loggedIn, session.user]);
+  }, [history, session, onSetSession]);
 
   useEffect(() => {
     if (session.loggedIn) {
@@ -52,7 +56,11 @@ const AuthGuard: FC<AuthGuardProps> = ({ roles, children }) => {
       if (!session.loggedIn) {
         const accessToken = localStorage.getItem('accessToken');
         if (accessToken !== null) {
-          dispatch(login(accessToken));
+          onSetSession({
+            ...session,
+            accessToken,
+            loggedIn: true,
+          });
         } else {
           history.push('/auth/login');
         }
@@ -60,7 +68,7 @@ const AuthGuard: FC<AuthGuardProps> = ({ roles, children }) => {
     };
 
     handleCheckSession();
-  }, [dispatch, history, location.pathname, session.loggedIn, session.user]);
+  }, [history, location.pathname, session, onSetSession]);
 
   return <>{children}</>;
 };

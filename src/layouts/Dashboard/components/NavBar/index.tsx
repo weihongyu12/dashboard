@@ -1,4 +1,4 @@
-import React, { useEffect, FC } from 'react';
+import React, { useContext, useEffect, FC } from 'react';
 import { useLocation } from 'react-router';
 import {
   Avatar,
@@ -32,7 +32,7 @@ import {
 } from '@material-ui/core/colors';
 import { makeStyles, createStyles } from '@material-ui/styles';
 import clsx from 'clsx';
-import { useAppSelector } from 'store';
+import { SessionContext } from 'components';
 import { NavigationConfig } from 'types';
 import Navigation from './components/Navigation';
 
@@ -81,7 +81,7 @@ const NavBar: FC<NavBarProps> = ({
   const classes = useStyles();
   const location = useLocation();
 
-  const session = useAppSelector((state) => state.session);
+  const { session } = useContext(SessionContext);
 
   const avatarColorPalettes = [
     red[600],

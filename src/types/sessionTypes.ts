@@ -28,3 +28,10 @@ export interface LoginResponse {
 export interface LogoutResponse {
   message: string;
 }
+
+export interface Session {
+  loggedIn: boolean;
+  accessToken: string;
+  refreshToken: string;
+  user: UserInfo | null;
+}

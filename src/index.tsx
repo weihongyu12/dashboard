@@ -1,12 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider as StoreProvider } from 'react-redux';
 import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
-import { store } from 'store';
-import { swInit, swUpdate } from 'reducers';
 import App from './App';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
 if (process.env.NODE_ENV === 'production') {
@@ -20,19 +16,9 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 ReactDOM.render(
-  <StoreProvider store={store}>
-    <App />
-  </StoreProvider>,
+  <App />,
   document.getElementById('root'),
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://cra.link/PWA
-serviceWorkerRegistration.register({
-  onSuccess: () => store.dispatch(swInit()),
-  onUpdate: (reg) => store.dispatch(swUpdate(reg)),
-});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

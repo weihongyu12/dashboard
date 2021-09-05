@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React, { useContext, FC } from 'react';
 import { RouterProps } from 'react-router';
 import { List } from '@material-ui/core';
-import { useAppSelector } from 'store';
+import { SessionContext } from 'components';
 import { Role, Pages, NavigationChild } from 'types';
 // eslint-disable-next-line import/no-cycle
 import ChildRoutes from '../ChildRoutes';
@@ -17,7 +17,8 @@ const NavigationList: FC<NavigationListProps> = ({
   depth = 0,
   pages = [],
 }) => {
-  const { user } = useAppSelector((state) => state.session);
+  const { session } = useContext(SessionContext);
+  const { user } = session;
 
   return (
     <List>
