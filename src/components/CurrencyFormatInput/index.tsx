@@ -1,8 +1,7 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { FC } from 'react';
 import NumberFormat from 'react-number-format';
 
-interface CurrencyFormatInputProps {
+type CurrencyFormatInputProps = {
   inputRef: (instance: NumberFormat | null) => void;
   onChange: (event: { target: { name: string; value: string } }) => void;
   name: string;
@@ -14,7 +13,7 @@ interface CurrencyFormatInputProps {
    * 格式化后缀
    */
   suffix?: string;
-}
+};
 
 const CurrencyFormatInput: FC<CurrencyFormatInputProps> = ({
   inputRef,
@@ -25,6 +24,7 @@ const CurrencyFormatInput: FC<CurrencyFormatInputProps> = ({
   ...rest
 }) => (
   <NumberFormat
+    /* eslint-disable-next-line react/jsx-props-no-spreading */
     {...rest}
     getInputRef={inputRef}
     onValueChange={(values) => {
@@ -43,5 +43,10 @@ const CurrencyFormatInput: FC<CurrencyFormatInputProps> = ({
     data-testid="CurrencyFormatInput"
   />
 );
+
+CurrencyFormatInput.defaultProps = {
+  prefix: '',
+  suffix: '',
+};
 
 export default CurrencyFormatInput;

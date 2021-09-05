@@ -201,9 +201,11 @@ const LoginForm: FC<LoginFormProps> = ({
                   await fetchLogin(creds.id, creds.password);
                 }
               } catch (e) {
-                enqueueSnackbar(e.message, {
-                  variant: 'error',
-                });
+                if (e instanceof Error) {
+                  enqueueSnackbar(e.message, {
+                    variant: 'error',
+                  });
+                }
               }
               break;
             }
@@ -257,9 +259,11 @@ const LoginForm: FC<LoginFormProps> = ({
       await storeCredential();
       redirectPage();
     } catch (e) {
-      enqueueSnackbar(e.message, {
-        variant: 'error',
-      });
+      if (e instanceof Error) {
+        enqueueSnackbar(e.message, {
+          variant: 'error',
+        });
+      }
     }
   };
 

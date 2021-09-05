@@ -148,9 +148,11 @@ const Result: FC<ResultProps> = ({
       await personService.mark(selected, status);
       setSelected([]);
     } catch (e) {
-      enqueueSnackbar(e.message, {
-        variant: 'error',
-      });
+      if (e instanceof Error) {
+        enqueueSnackbar(e.message, {
+          variant: 'error',
+        });
+      }
     }
   };
 
@@ -182,9 +184,11 @@ const Result: FC<ResultProps> = ({
         ),
       });
     } catch (e) {
-      enqueueSnackbar(e.message, {
-        variant: 'error',
-      });
+      if (e instanceof Error) {
+        enqueueSnackbar(e.message, {
+          variant: 'error',
+        });
+      }
     }
   };
 
@@ -301,8 +305,8 @@ const Result: FC<ResultProps> = ({
             native: true,
           }}
           component="div"
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </TableContainer>
       <TableEditBar

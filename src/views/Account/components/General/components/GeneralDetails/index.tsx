@@ -148,9 +148,11 @@ const GeneralDetails: FC<GeneralDetailsProps> = (props) => {
       });
       dispatch(getUserInfoAsync());
     } catch (e) {
-      enqueueSnackbar(e.message, {
-        variant: 'error',
-      });
+      if (e instanceof Error) {
+        enqueueSnackbar(e.message, {
+          variant: 'error',
+        });
+      }
     }
   };
 

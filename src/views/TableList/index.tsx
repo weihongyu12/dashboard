@@ -48,9 +48,11 @@ const TableList: FC = () => {
       setData([...response.data]);
       setPages(response.meta.total);
     } catch (e) {
-      enqueueSnackbar(e.message, {
-        variant: 'error',
-      });
+      if (e instanceof Error) {
+        enqueueSnackbar(e.message, {
+          variant: 'error',
+        });
+      }
     }
   }, [currentPage, rowsPerPage, sortby, order, keyword, filter, enqueueSnackbar]);
 
