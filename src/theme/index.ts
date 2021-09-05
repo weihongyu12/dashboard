@@ -1,4 +1,4 @@
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import { zhCN } from '@material-ui/core/locale';
 import '@fontsource/noto-sans-sc/chinese-simplified.css';
 import '@fontsource/noto-sans-sc/latin.css';
@@ -46,7 +46,7 @@ export const fontFamily = [
   '"Segoe UI Symbol"',
 ];
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette,
   typography: {
     htmlFontSize: 16,
