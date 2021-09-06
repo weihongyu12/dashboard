@@ -1,36 +1,19 @@
-import { v1 as uuid } from 'uuid';
 import mock from 'utils/mock';
-import rmjob from './data/rmjob.json';
-import nationality from './data/nationality.json';
-import polity from './data/polity.json';
-import marital from './data/marital.json';
-import health from './data/health.json';
+import job from './data/job';
+import nationality from './data/nationality';
+import polity from './data/polity';
+import marital from './data/marital';
+import health from './data/health';
 import region from './data/region.json';
-import education from './data/education.json';
-import degree from './data/degree.json';
-import studymode from './data/studymode.json';
-import titletechpost from './data/titletechpost.json';
-import relation from './data/relation.json';
-import clagsort from './data/clagsort.json';
-
-mock.onGet('/api/demo')
-  .reply(200, [
-    {
-      id: uuid(),
-      regJob: 'web前端工程师',
-      name: '魏宏裕',
-      gender: '男',
-      birthdate: '1992-01-09',
-      school: '广东科学技术职业学院',
-      major: '软件工程',
-      education: '大专',
-      studymode: '全日制',
-      degree: '无学位',
-    },
-  ]);
+import education from './data/education';
+import degree from './data/degree';
+import studyMode from './data/studyMode';
+import professionalTechnicalQualification from './data/professionalTechnicalQualification';
+import relation from './data/relation';
+import language from './data/language';
 
 // 申请职位
-mock.onGet('/api/demo/rmjob').reply(200, rmjob);
+mock.onGet('/api/demo/job').reply(200, job);
 
 // 民族
 mock.onGet('/api/demo/nationality').reply(200, nationality);
@@ -54,13 +37,13 @@ mock.onGet('/api/demo/education').reply(200, education);
 mock.onGet('/api/demo/degree').reply(200, degree);
 
 // 学制
-mock.onGet('/api/demo/studymode').reply(200, studymode);
+mock.onGet('/api/demo/studyMode').reply(200, studyMode);
 
 // 专业技术资格
-mock.onGet('/api/demo/titletechpost').reply(200, titletechpost);
+mock.onGet('/api/demo/professionalTechnicalQualification').reply(200, professionalTechnicalQualification);
 
 // 关系
 mock.onGet('/api/demo/relation').reply(200, relation);
 
 // 语种
-mock.onGet('/api/demo/clagsort').reply(200, clagsort);
+mock.onGet('/api/demo/language').reply(200, language);
