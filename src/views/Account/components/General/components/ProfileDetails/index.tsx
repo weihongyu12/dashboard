@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { useContext, FC } from 'react';
 import {
   Card,
   CardContent,
@@ -29,11 +29,38 @@ import {
 } from '@material-ui/core/colors';
 import { makeStyles, createStyles } from '@material-ui/styles';
 import clsx from 'clsx';
-import { useAppSelector } from 'store';
+import { SessionContext } from 'components';
 
 export interface ProfileDetailsProps {
   className?: string;
 }
+
+const avatarColorPalettes = [
+  red[600],
+  pink[600],
+  purple[600],
+  deepPurple[600],
+  indigo[600],
+  blue[600],
+  lightBlue[600],
+  cyan[600],
+  teal[600],
+  green[600],
+  lightGreen[600],
+  lime[600],
+  yellow[600],
+  amber[600],
+  orange[600],
+  deepOrange[600],
+  brown[600],
+  grey[600],
+  blueGrey[600],
+];
+
+const avatarColor = (string: string) => {
+  const index = string.charCodeAt(0) % 18;
+  return avatarColorPalettes[index];
+};
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {},
@@ -58,34 +85,8 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 const ProfileDetails: FC<ProfileDetailsProps> = ({ className = '' }) => {
   const classes = useStyles();
 
-  const { user } = useAppSelector((state) => state.session);
-
-  const avatarColorPalettes = [
-    red[600],
-    pink[600],
-    purple[600],
-    deepPurple[600],
-    indigo[600],
-    blue[600],
-    lightBlue[600],
-    cyan[600],
-    teal[600],
-    green[600],
-    lightGreen[600],
-    lime[600],
-    yellow[600],
-    amber[600],
-    orange[600],
-    deepOrange[600],
-    brown[600],
-    grey[600],
-    blueGrey[600],
-  ];
-
-  const avatarColor = (string: string) => {
-    const index = string.charCodeAt(0) % 18;
-    return avatarColorPalettes[index];
-  };
+  const { session } = useContext(SessionContext);
+  const { user } = session;
 
   return (
     <Card

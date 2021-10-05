@@ -16,7 +16,7 @@ instance.interceptors.request.use((config) => {
 
   return {
     ...config,
-    paramsSerializer(params) {
+    paramsSerializer(params: any) {
       return qs.stringify(params, { arrayFormat: 'brackets', format: 'RFC3986' });
     },
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

@@ -1,4 +1,5 @@
 import React, {
+  useContext,
   useEffect,
   useMemo,
   useState,
@@ -30,7 +31,7 @@ import { useSnackbar } from 'notistack';
 import { useConfirm } from 'material-ui-confirm';
 import validate from 'validate.js';
 import taiPasswordStrength from 'tai-password-strength';
-import { useAppSelector } from 'store';
+import { SessionContext } from 'components';
 import { accountService } from 'service';
 
 export interface SecurityProps {
@@ -128,7 +129,8 @@ const Security: FC<SecurityProps> = ({ className = '' }) => {
   });
   const [passwordStrengthCode, setPasswordStrengthCode] = useState<string>('');
 
-  const { user } = useAppSelector((state) => state.session);
+  const { session } = useContext(SessionContext);
+  const { user } = session;
 
   const { enqueueSnackbar } = useSnackbar();
   const confirm = useConfirm();
