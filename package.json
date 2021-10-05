@@ -1,10 +1,10 @@
 {
-  "name": "yonyou-dashborad",
+  "name": "dashboard",
   "version": "0.1.0",
   "author": "weihongyu12",
   "email": "weihongyu12@126.com",
-  "description": "A Simple Pocket Book",
-  "productName": "Simple Pocket Book",
+  "description": "dashboard",
+  "productName": "Dashborad",
   "main": "electron/main.js",
   "private": true,
   "scripts": {

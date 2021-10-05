@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.example.app',
-  appName: 'yonyou-dashborad',
+  appName: 'dashboard',
   webDir: 'build',
   bundledWebRuntime: false
 };
