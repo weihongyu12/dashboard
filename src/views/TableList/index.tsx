@@ -4,8 +4,9 @@ import React, {
   useState,
   FC,
 } from 'react';
-import { createStyles, makeStyles } from '@material-ui/styles';
-import { Theme } from '@material-ui/core/styles';
+import { Stack } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
+import { Theme } from '@mui/material/styles';
 import { useSnackbar } from 'notistack';
 import AuthGuard from 'components/AuthGuard';
 import Page from 'components/Page';
@@ -97,24 +98,26 @@ const TableList: FC = () => {
   return (
     <AuthGuard roles={['ADMINISTRATOR']}>
       <Page title="表格列表" className={classes.root}>
-        <Header />
-        <SearchBar
-          onSearch={handleSearch}
-          onFilter={handleFilter}
-        />
-        <Result
-          data={data}
-          count={pages}
-          rowsPerPage={rowsPerPage}
-          page={currentPage}
-          sortby={sortby}
-          order={order}
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
-          onSort={handleSort}
-          onDelete={handleDelete}
-          onMark={handleMark}
-        />
+        <Stack spacing={2}>
+          <Header />
+          <SearchBar
+            onSearch={handleSearch}
+            onFilter={handleFilter}
+          />
+          <Result
+            data={data}
+            count={pages}
+            rowsPerPage={rowsPerPage}
+            page={currentPage}
+            sortby={sortby}
+            order={order}
+            onChangePage={handleChangePage}
+            onChangeRowsPerPage={handleChangeRowsPerPage}
+            onSort={handleSort}
+            onDelete={handleDelete}
+            onMark={handleMark}
+          />
+        </Stack>
       </Page>
     </AuthGuard>
   );

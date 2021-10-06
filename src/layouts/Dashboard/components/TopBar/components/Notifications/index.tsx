@@ -20,9 +20,9 @@ import {
   Popper,
   Typography,
   Theme,
-} from '@material-ui/core';
-import { NotificationsNoneOutlined as NotificationsNoneOutlinedIcon } from '@material-ui/icons';
-import { makeStyles, createStyles } from '@material-ui/styles';
+} from '@mui/material';
+import { NotificationsNoneOutlined as NotificationsNoneOutlinedIcon } from '@mui/icons-material';
+import { makeStyles, createStyles } from '@mui/styles';
 import { format, parseISO } from 'date-fns';
 import zhHansLocale from 'date-fns/locale/zh-CN';
 import { messageService } from 'service';
@@ -103,6 +103,7 @@ const Notifications: FC = () => {
       <IconButton
         ref={notificationsRef}
         color="inherit"
+        size="large"
         onClick={handleOpen}
       >
         <Badge badgeContent={count} max={99} color="secondary">
@@ -120,64 +121,64 @@ const Notifications: FC = () => {
           <Card className={classes.card}>
             <CardContent className={classes.content}>
               {
-                list.length === 0 ? (
-                  <div className={classes.empty}>
-                    <div className={classes.image} />
-                    <Typography variant="h4">您没有任何未读消息</Typography>
-                  </div>
-                ) : (
-                  <List dense>
-                    {
-                      list.map((item) => (
-                        <ListItem
-                          component={RouterLink}
-                          to={item.url}
-                          button
-                          divider
-                          key={item.id}
-                          onClick={() => {
-                            fetchReaded(item.id);
-                          }}
-                        >
-                          <ListItemText
-                            primary={item.title}
-                            secondary={(
-                              <>
-                                <Typography
-                                  component="span"
-                                  variant="body2"
-                                  color="textPrimary"
-                                >
-                                  {format(parseISO(item.date), 'PPP', { locale: zhHansLocale })}
-                                </Typography>
-                                {' '}
-                                -
-                                {' '}
-                                {item.content}
-                              </>
-                            )}
-                          />
-                        </ListItem>
-                      ))
-                    }
-                  </List>
-                )
-              }
-            </CardContent>
-            {
-              list.length > 0 && (
-                <CardActions className={classes.actions}>
-                  <Button
-                    component={RouterLink}
-                    to="/account/notice"
-                    color="primary"
-                    onClick={handleClose}
-                  >
-                    查看全部
-                  </Button>
-                </CardActions>
+              list.length === 0 ? (
+                <div className={classes.empty}>
+                  <div className={classes.image} />
+                  <Typography variant="h4">您没有任何未读消息</Typography>
+                </div>
+              ) : (
+                <List dense>
+                  {
+                    list.map((item) => (
+                      <ListItem
+                        component={RouterLink}
+                        to={item.url}
+                        button
+                        divider
+                        key={item.id}
+                        onClick={() => {
+                          fetchReaded(item.id);
+                        }}
+                      >
+                        <ListItemText
+                          primary={item.title}
+                          secondary={(
+                            <>
+                              <Typography
+                                component="span"
+                                variant="body2"
+                                color="textPrimary"
+                              >
+                                {format(parseISO(item.date), 'PPP', { locale: zhHansLocale })}
+                              </Typography>
+                              {' '}
+                              -
+                              {' '}
+                              {item.content}
+                            </>
+                          )}
+                        />
+                      </ListItem>
+                    ))
+                  }
+                </List>
               )
             }
+            </CardContent>
+            {
+            list.length > 0 && (
+              <CardActions className={classes.actions}>
+                <Button
+                  component={RouterLink}
+                  to="/account/notice"
+                  color="primary"
+                  onClick={handleClose}
+                >
+                  查看全部
+                </Button>
+              </CardActions>
+            )
+          }
           </Card>
         </ClickAwayListener>
       </Popper>

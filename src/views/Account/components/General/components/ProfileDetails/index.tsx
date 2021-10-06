@@ -5,7 +5,7 @@ import {
   Avatar,
   Typography,
   Theme,
-} from '@material-ui/core';
+} from '@mui/material';
 import {
   red,
   pink,
@@ -26,8 +26,8 @@ import {
   brown,
   grey,
   blueGrey,
-} from '@material-ui/core/colors';
-import { makeStyles, createStyles } from '@material-ui/styles';
+} from '@mui/material/colors';
+import { makeStyles, createStyles } from '@mui/styles';
 import clsx from 'clsx';
 import { SessionContext } from 'components';
 

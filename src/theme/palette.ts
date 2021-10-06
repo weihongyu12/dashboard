@@ -4,7 +4,17 @@ import {
   red,
   blueGrey,
   grey,
-} from '@material-ui/core/colors';
+} from '@mui/material/colors';
+
+declare module '@mui/material/styles' {
+  interface Palette {
+    light: Palette['primary'];
+  }
+
+  interface PaletteOptions {
+    light?: PaletteOptions['primary'];
+  }
+}
 
 const white = '#FFFFFF';
 const black = 'rgba(0, 0, 0, 0.87)';
@@ -42,4 +52,10 @@ export default {
     paper: white,
   },
   divider: grey[200],
+  light: {
+    main: white,
+    dark: white,
+    light: white,
+    contrastText: black,
+  },
 };

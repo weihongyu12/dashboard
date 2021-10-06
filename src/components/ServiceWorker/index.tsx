@@ -4,8 +4,7 @@ import React, {
   useReducer,
   FC,
 } from 'react';
-import { Button } from '@material-ui/core';
-import { Alert, AlertTitle } from '@material-ui/lab';
+import { Button, Alert, AlertTitle } from '@mui/material';
 import { useSnackbar } from 'notistack';
 
 type Config = {

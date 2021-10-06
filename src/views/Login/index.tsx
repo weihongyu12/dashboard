@@ -8,9 +8,9 @@ import {
   Link,
   Typography,
   Theme,
-} from '@material-ui/core';
-import { Lock as LockIcon } from '@material-ui/icons';
-import { makeStyles, createStyles } from '@material-ui/styles';
+} from '@mui/material';
+import { Lock as LockIcon } from '@mui/icons-material';
+import { makeStyles, createStyles } from '@mui/styles';
 import qs from 'qs';
 import { format } from 'date-fns';
 import { Page, BrowserAlert } from 'components';
@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-end',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       display: 'none',
     },
   },

@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
-import { Typography, Theme } from '@material-ui/core';
-import { makeStyles, createStyles } from '@material-ui/styles';
+import { Typography, Theme } from '@mui/material';
+import { makeStyles, createStyles } from '@mui/styles';
 import clsx from 'clsx';
 import hexToRgba from 'utils/hexToRgba';
 

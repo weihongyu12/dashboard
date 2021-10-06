@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { forwardRef } from 'react';
-import { SvgIconProps } from '@material-ui/core';
+import { SvgIconProps } from '@mui/material';
 import {
   AddBox as AddBoxIcon,
   ArrowDownward as ArrowDownwardIcon,
@@ -17,7 +17,7 @@ import {
   SaveAlt as SaveAltIcon,
   Search as SearchIcon,
   ViewColumn as ViewColumnIcon,
-} from '@material-ui/icons';
+} from '@mui/icons-material';
 
 const materialTableIcons = {
   Add: forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => (

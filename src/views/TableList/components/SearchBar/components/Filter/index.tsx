@@ -8,6 +8,8 @@ import React, {
   MouseEvent,
 } from 'react';
 import {
+  Autocomplete,
+  Box,
   Button,
   Collapse,
   Divider,
@@ -20,24 +22,21 @@ import {
   RadioGroup,
   Select,
   Slider,
+  Stack,
   TextField,
-  Typography,
-  Theme,
-} from '@material-ui/core';
-import {
-  Autocomplete,
   ToggleButton,
   ToggleButtonGroup,
-} from '@material-ui/lab';
+  Typography,
+  Theme,
+} from '@mui/material';
 import {
   Close as CloseIcon,
   DeleteOutlined as DeleteIcon,
   ExpandLess as ExpandLessIcon,
   ExpandMore as ExpandMoreIcon,
-} from '@material-ui/icons';
-import { DatePicker } from '@material-ui/pickers';
-import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
-import { makeStyles, createStyles } from '@material-ui/styles';
+} from '@mui/icons-material';
+import { DateRangePicker } from '@mui/lab';
+import { makeStyles, createStyles } from '@mui/styles';
 import clsx from 'clsx';
 import accounting from 'accounting';
 import { format } from 'date-fns';
@@ -48,6 +47,7 @@ import { DepartmentResponse } from 'types';
 type FieldChangeEvent =
   ChangeEvent<HTMLInputElement | HTMLTextAreaElement | { name?:string, value: unknown } | unknown>
   | MouseEvent<HTMLElement>
+  | Event
   | null;
 
 export interface FilterValue {
@@ -59,8 +59,7 @@ export interface FilterValue {
   department: DepartmentResponse | null;
   amount: number[];
   status: string[];
-  startDate: MaterialUiPickersDate | null;
-  endDate: MaterialUiPickersDate | null;
+  date: [Date | null, Date | null];
 }
 
 export interface FilterResult {
@@ -117,29 +116,11 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     justifyContent: 'space-between',
     cursor: 'pointer',
   },
-  contentSectionContent: {},
-  formGroup: {
-    padding: theme.spacing(2, 0),
-  },
-  fieldGroup: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  field: {
-    marginTop: 0,
-    marginBottom: 0,
-  },
   flexGrow: {
     flexGrow: 1,
   },
   horizontalDivider: {
     margin: theme.spacing(0, 1),
-  },
-  minAmount: {
-    marginRight: theme.spacing(3),
-  },
-  maxAmount: {
-    marginLeft: theme.spacing(3),
   },
   radioGroup: {},
   actions: {
@@ -167,8 +148,7 @@ const Filter: FC<FilterProps> = ({
     department: null,
     amount: [1200, 1500],
     status: [],
-    startDate: null,
-    endDate: null,
+    date: [null, null],
   };
 
   const [expandUser, setExpandUser] = useState<boolean>(true);
@@ -211,14 +191,15 @@ const Filter: FC<FilterProps> = ({
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const [startDate, endDate] = values.date;
     const data = {
       ...values,
       minAmount: values.amount?.[0],
       maxAmount: values.amount?.[1],
       departmentId: values.department?.id,
       status: values.status.join(','),
-      startDate: values.startDate && format(values.startDate, 'yyyy-MM-dd'),
-      endDate: values.endDate && format(values.endDate, 'yyyy-MM-dd'),
+      startDate: startDate && format(startDate, 'yyyy-MM-dd'),
+      endDate: endDate && format(endDate, 'yyyy-MM-dd'),
     };
     const filter = Object.entries(data).filter(([key, value]) => !!value);
     onFilter(Object.fromEntries(filter));
@@ -242,8 +223,9 @@ const Filter: FC<FilterProps> = ({
       >
         <div className={classes.header}>
           <Button
-            onClick={onClose}
+            color="light"
             size="small"
+            onClick={onClose}
           >
             <CloseIcon className={classes.buttonIcon} />
             关闭
@@ -262,68 +244,59 @@ const Filter: FC<FilterProps> = ({
             </div>
             <Divider />
             <Collapse in={expandUser}>
-              <div className={classes.contentSectionContent}>
-                <div className={classes.formGroup}>
-                  <Autocomplete
-                    value={values.department}
-                    inputValue={departmentInput}
-                    getOptionLabel={(option) => option.name}
-                    autoHighlight
-                    renderInput={(params) => (
+              <Stack spacing={2}>
+                <Autocomplete
+                  value={values.department}
+                  inputValue={departmentInput}
+                  getOptionLabel={(option) => option.name}
+                  autoHighlight
+                  renderInput={(params) => (
+                    <>
+                      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+                      <TextField {...params} label="部门" variant="outlined" margin="dense" />
+                    </>
+                  )}
+                  options={departmentOptions}
+                  onChange={(event, value) => {
+                    handleFieldChange(event, 'department', value);
+                  }}
+                  onInputChange={(event, value) => {
+                    setDepartmentInput(value);
+                  }}
+                />
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                >
+                  <DateRangePicker
+                    value={values.date}
+                    startText="开始时间"
+                    endText="结束时间"
+                    inputFormat="PPP"
+                    onChange={(newValue) => {
+                      handleFieldChange(null, 'date', newValue);
+                    }}
+                    renderInput={(startProps, endProps) => (
                       <>
                         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-                        <TextField {...params} label="部门" variant="outlined" margin="dense" />
+                        <TextField {...startProps} />
+                        <Box sx={{ mx: 2 }}>-</Box>
+                        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+                        <TextField {...endProps} />
                       </>
                     )}
-                    options={departmentOptions}
-                    onChange={(event, value) => {
-                      handleFieldChange(event, 'department', value);
-                    }}
-                    onInputChange={(event, value) => {
-                      setDepartmentInput(value);
-                    }}
                   />
-                </div>
-                <div className={classes.formGroup}>
-                  <div className={classes.fieldGroup}>
-                    <DatePicker
-                      value={values.startDate}
-                      className={classes.flexGrow}
-                      name="startDate"
-                      variant="inline"
-                      inputVariant="outlined"
-                      label="开始时间"
-                      margin="dense"
-                      format="PPP"
-                      autoOk
-                      onChange={(date) => {
-                        handleFieldChange(null, 'startDate', date);
-                      }}
-                    />
-                    <Divider className={classes.horizontalDivider} orientation="horizontal" flexItem />
-                    <DatePicker
-                      value={values.endDate}
-                      className={classes.flexGrow}
-                      name="endDate"
-                      variant="inline"
-                      inputVariant="outlined"
-                      label="结束时间"
-                      margin="dense"
-                      format="PPP"
-                      autoOk
-                      onChange={(date) => {
-                        handleFieldChange(null, 'endDate', date);
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className={classes.formGroup}>
+                </Box>
+                <Box>
                   <FormLabel>报销标准</FormLabel>
-                  <div className={classes.fieldGroup}>
-                    <Typography
-                      className={classes.minAmount}
-                      variant="body1"
-                    >
+                  <Stack
+                    spacing={3}
+                    direction="row"
+                    alignItems="center"
+                  >
+                    <Typography variant="body1">
                       {accounting.formatMoney(values.amount[0], '¥', 0)}
                     </Typography>
                     <Slider
@@ -335,18 +308,19 @@ const Filter: FC<FilterProps> = ({
                       value={values.amount}
                       valueLabelDisplay="auto"
                     />
-                    <Typography
-                      className={classes.maxAmount}
-                      variant="body1"
-                    >
+                    <Typography variant="body1">
                       {accounting.formatMoney(values.amount[1], '¥', 0)}
                     </Typography>
-                  </div>
-                </div>
-
-                <div className={classes.formGroup}>
+                  </Stack>
+                </Box>
+                <Box>
                   <FormLabel>状态</FormLabel>
-                  <div className={classes.fieldGroup}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                    }}
+                  >
                     <ToggleButtonGroup
                       value={values.status}
                       color="primary"
@@ -362,9 +336,9 @@ const Filter: FC<FilterProps> = ({
                       <ToggleButton value="出差" className={classes.flexGrow}>出差</ToggleButton>
                       <ToggleButton value="休假" className={classes.flexGrow}>休假</ToggleButton>
                     </ToggleButtonGroup>
-                  </div>
-                </div>
-              </div>
+                  </Box>
+                </Box>
+              </Stack>
             </Collapse>
           </div>
           <div className={classes.contentSection}>
@@ -379,106 +353,92 @@ const Filter: FC<FilterProps> = ({
             </div>
             <Divider />
             <Collapse in={expandCustomer}>
-              <div className={classes.contentSectionContent}>
-                <div className={classes.contentSectionContent}>
-                  <div className={classes.formGroup}>
-                    <TextField
-                      className={classes.field}
-                      fullWidth
-                      label="姓名"
-                      margin="dense"
-                      name="name"
-                      onChange={(event) => handleFieldChange(
-                        event,
-                        'name',
-                        event.target.value,
-                      )}
-                      value={values.name}
-                      variant="outlined"
-                    />
-                  </div>
-                  <div className={classes.formGroup}>
-                    <FormControl margin="dense">
-                      <FormLabel>性别</FormLabel>
-                      <RadioGroup aria-label="gender" name="gender" row>
-                        <FormControlLabel value="" control={<Radio />} label="全部" />
-                        <FormControlLabel value="男" control={<Radio />} label="男" />
-                        <FormControlLabel value="女" control={<Radio />} label="女" />
-                      </RadioGroup>
-                    </FormControl>
-                  </div>
-                  <div className={classes.formGroup}>
-                    <TextField
-                      className={classes.field}
-                      fullWidth
-                      label="电子邮件"
-                      margin="dense"
-                      name="email"
-                      type="email"
-                      onChange={(event) => handleFieldChange(
-                        event,
-                        'email',
-                        event.target.value,
-                      )}
-                      value={values.email}
-                      variant="outlined"
-                    />
-                  </div>
-                  <div className={classes.formGroup}>
-                    <TextField
-                      className={classes.field}
-                      fullWidth
-                      label="手机号码"
-                      margin="dense"
-                      name="mobile"
-                      type="tel"
-                      onChange={(event) => handleFieldChange(
-                        event,
-                        'mobile',
-                        event.target.value,
-                      )}
-                      value={values.mobile}
-                      variant="outlined"
-                    />
-                  </div>
-                  <div className={classes.formGroup}>
-                    <FormControl
-                      fullWidth
-                      variant="outlined"
-                      margin="dense"
-                    >
-                      <InputLabel htmlFor="job">岗位</InputLabel>
-                      <Select
-                        value={values.job}
-                        native
-                        label="岗位"
-                        inputProps={{
-                          name: 'job',
-                          id: 'job',
-                        }}
-                        onChange={(event) => handleFieldChange(
-                          event,
-                          'job',
-                          event.target.value,
-                        )}
-                      >
-                        <option aria-label="全部" value="" />
-                        <option value="高级开发工程师">高级开发工程师</option>
-                        <option value="开发工程师">开发工程师</option>
-                        <option value="助理开发工程师">助理开发工程师</option>
-                      </Select>
-                    </FormControl>
-                  </div>
-                </div>
-              </div>
+              <Stack spacing={2}>
+                <TextField
+                  value={values.name}
+                  label="姓名"
+                  variant="outlined"
+                  margin="dense"
+                  name="name"
+                  fullWidth
+                  onChange={(event) => handleFieldChange(
+                    event,
+                    'name',
+                    event.target.value,
+                  )}
+
+                />
+                <FormControl margin="dense">
+                  <FormLabel>性别</FormLabel>
+                  <RadioGroup aria-label="gender" name="gender" row>
+                    <FormControlLabel value="" control={<Radio />} label="全部" />
+                    <FormControlLabel value="男" control={<Radio />} label="男" />
+                    <FormControlLabel value="女" control={<Radio />} label="女" />
+                  </RadioGroup>
+                </FormControl>
+                <TextField
+                  value={values.email}
+                  label="电子邮件"
+                  variant="outlined"
+                  margin="dense"
+                  name="email"
+                  type="email"
+                  fullWidth
+                  onChange={(event) => handleFieldChange(
+                    event,
+                    'email',
+                    event.target.value,
+                  )}
+                />
+                <TextField
+                  value={values.mobile}
+                  label="手机号码"
+                  variant="outlined"
+                  margin="dense"
+                  name="mobile"
+                  type="tel"
+                  fullWidth
+                  onChange={(event) => handleFieldChange(
+                    event,
+                    'mobile',
+                    event.target.value,
+                  )}
+                />
+                <FormControl
+                  variant="outlined"
+                  margin="dense"
+                  fullWidth
+                >
+                  <InputLabel htmlFor="job">岗位</InputLabel>
+                  <Select
+                    value={values.job}
+                    native
+                    label="岗位"
+                    inputProps={{
+                      name: 'job',
+                      id: 'job',
+                    }}
+                    onChange={(event) => handleFieldChange(
+                      event,
+                      'job',
+                      event.target.value,
+                    )}
+                  >
+                    <option aria-label="全部" value="" />
+                    <option value="高级开发工程师">高级开发工程师</option>
+                    <option value="开发工程师">开发工程师</option>
+                    <option value="助理开发工程师">助理开发工程师</option>
+                  </Select>
+                </FormControl>
+              </Stack>
             </Collapse>
           </div>
         </div>
         <div className={classes.actions}>
           <Button
+            color="light"
             fullWidth
             onClick={handleClear}
-            variant="contained"
           >
             <DeleteIcon className={classes.buttonIcon} />
             清除

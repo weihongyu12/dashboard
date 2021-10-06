@@ -7,11 +7,11 @@ import React, {
 import { BrowserRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import { Provider as StoreProvider } from 'react-redux';
-import { CssBaseline, IconButton } from '@material-ui/core';
-import { Close as CloseIcon } from '@material-ui/icons';
-import { ThemeProvider } from '@material-ui/styles';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
+import { CssBaseline, IconButton } from '@mui/material';
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
+import { Close as CloseIcon } from '@mui/icons-material';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import zhHansLocale from 'date-fns/locale/zh-CN';
 import { SnackbarProvider, SnackbarKey } from 'notistack';
 import { ConfirmProvider } from 'material-ui-confirm';
@@ -45,39 +45,41 @@ const App: FC = () => {
 
   return (
     <StoreProvider store={store}>
-      <ThemeProvider theme={theme}>
-        <MuiPickersUtilsProvider utils={DateFnsUtils} locale={zhHansLocale}>
-          <SnackbarProvider
-            ref={notistackRef}
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'center',
-            }}
-            maxSnack={1}
-            disableWindowBlurListener
-            action={(key) => (
-              <IconButton
-                color="inherit"
-                size="small"
-                onClick={onClickDismiss(key)}
-              >
-                <CloseIcon />
-              </IconButton>
-            )}
-          >
-            <ConfirmProvider>
-              <SessionProvider>
-                <CssBaseline />
-                <ServiceWorker serviceWorker={serviceWorkerRegistration} />
-                <BrowserRouter>
-                  <ScrollReset />
-                  {routes && renderRoutes(routes)}
-                </BrowserRouter>
-              </SessionProvider>
-            </ConfirmProvider>
-          </SnackbarProvider>
-        </MuiPickersUtilsProvider>
-      </ThemeProvider>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <LocalizationProvider dateAdapter={AdapterDateFns} locale={zhHansLocale}>
+            <SnackbarProvider
+              ref={notistackRef}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+              }}
+              maxSnack={1}
+              disableWindowBlurListener
+              action={(key) => (
+                <IconButton
+                  color="inherit"
+                  size="small"
+                  onClick={onClickDismiss(key)}
+                >
+                  <CloseIcon />
+                </IconButton>
+              )}
+            >
+              <ConfirmProvider>
+                <SessionProvider>
+                  <CssBaseline />
+                  <ServiceWorker serviceWorker={serviceWorkerRegistration} />
+                  <BrowserRouter>
+                    <ScrollReset />
+                    {routes && renderRoutes(routes)}
+                  </BrowserRouter>
+                </SessionProvider>
+              </ConfirmProvider>
+            </SnackbarProvider>
+          </LocalizationProvider>
+        </ThemeProvider>
+      </StyledEngineProvider>
     </StoreProvider>
   );
 };

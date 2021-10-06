@@ -5,9 +5,9 @@ import {
   Button,
   useMediaQuery,
   Theme,
-} from '@material-ui/core';
-import { useTheme } from '@material-ui/core/styles';
-import { makeStyles, createStyles } from '@material-ui/styles';
+} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import { makeStyles, createStyles } from '@mui/styles';
 import Page from 'components/Page';
 import PageNotFoundImage from './images/undraw_page_not_found_su7k.svg';
 
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 const Error404: FC = () => {
   const classes = useStyles();
   const theme = useTheme();
-  const mobileDevice = useMediaQuery(theme.breakpoints.down('sm'));
+  const mobileDevice = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <Page

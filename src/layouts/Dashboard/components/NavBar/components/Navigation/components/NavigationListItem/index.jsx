@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { NavLink as RouterLink } from 'react-router-dom';
 import {
   ListItem, Button, Collapse,
-} from '@material-ui/core';
-import { blueGrey } from '@material-ui/core/colors';
+} from '@mui/material';
+import { blueGrey } from '@mui/material/colors';
 import {
   ExpandMore as ExpandMoreIcon,
   ExpandLess as ExpandLessIcon,
-} from '@material-ui/icons';
-import { makeStyles } from '@material-ui/styles';
+} from '@mui/icons-material';
+import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
 
 const CustomRouterLink = forwardRef((props, ref) => (

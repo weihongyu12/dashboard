@@ -2,11 +2,7 @@ import {
   HomeOutlined as HomeIcon,
   AccountCircleOutlined as AccountCircleOutlinedIcon,
   ReceiptOutlined as ReceiptOutlinedIcon,
-  DonutLargeOutlined as DonutLargeOutlinedIcon,
-  EmojiPeople as EmojiPeopleIcon,
-  Dashboard as DashboardIcon,
-  ListAlt as ListAltIcon,
-} from '@material-ui/icons';
+} from '@mui/icons-material';
 import { NavigationConfig } from 'types';
 
 // GENERAL_USER 普通用户

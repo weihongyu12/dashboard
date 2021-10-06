@@ -4,8 +4,8 @@ import {
   Breadcrumbs,
   Link,
   Typography,
-} from '@material-ui/core';
-import { makeStyles, createStyles } from '@material-ui/styles';
+} from '@mui/material';
+import { makeStyles, createStyles } from '@mui/styles';
 import clsx from 'clsx';
 
 export interface HeaderProps {
@@ -28,6 +28,7 @@ const Header: FC<HeaderProps> = ({ className = '' }) => {
           component={RouterLink}
           to="/"
           color="inherit"
+          underline="hover"
         >
           首页
         </Link>

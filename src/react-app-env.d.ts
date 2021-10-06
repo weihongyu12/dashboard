@@ -77,6 +77,12 @@ declare module '*.module.sass' {
   export default classes;
 }
 
+declare module '@mui/styles/defaultTheme' {
+  import { Theme } from '@mui/material/styles';
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
 declare module 'tai-password-strength' {
   import taiPasswordStrength from 'tai-password-strength';
 

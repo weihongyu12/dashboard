@@ -5,8 +5,8 @@ import React, {
   FC,
 } from 'react';
 import { renderRoutes, RouteConfigComponentProps } from 'react-router-config';
-import { LinearProgress } from '@material-ui/core';
-import { makeStyles, createStyles } from '@material-ui/styles';
+import { LinearProgress } from '@mui/material';
+import { makeStyles, createStyles } from '@mui/styles';
 import { NavigationConfig } from 'types';
 
 import { NavBar, TopBar } from './components';

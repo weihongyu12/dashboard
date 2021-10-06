@@ -13,23 +13,24 @@ import {
   CardHeader,
   CardContent,
   CardActions,
-  Grid,
   Button,
   Divider,
+  Stack,
   TextField,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
 import {
   red,
   yellow,
   lightGreen,
   green,
   grey,
-} from '@material-ui/core/colors';
-import { makeStyles, createStyles } from '@material-ui/styles';
+} from '@mui/material/colors';
+import { makeStyles, createStyles } from '@mui/styles';
 import { useSnackbar } from 'notistack';
 import { useConfirm } from 'material-ui-confirm';
 import validate from 'validate.js';
+import { multiply, divide } from 'mathjs';
 import taiPasswordStrength from 'tai-password-strength';
 import { SessionContext } from 'components';
 import { accountService } from 'service';
@@ -108,6 +109,13 @@ const passwordStrengthText: PasswordStrengthText = {
   REASONABLE: '中',
   STRONG: '强',
   VERY_STRONG: '非常强',
+};
+
+const stackWidth = (col: number) => {
+  let result = divide(col, 12);
+  result = multiply(result, 100);
+
+  return `${result}%`;
 };
 
 const Security: FC<SecurityProps> = ({ className = '' }) => {
@@ -257,122 +265,85 @@ const Security: FC<SecurityProps> = ({ className = '' }) => {
       <Divider />
       <CardContent>
         <form>
-          <Grid
-            container
+          <Stack
             spacing={3}
+            sx={{
+              width: {
+                xs: stackWidth(12),
+                sm: stackWidth(6),
+                md: stackWidth(4),
+              },
+            }}
           >
             {
               user?.password === '**' && (
-                <Grid
-                  item
-                  md={4}
-                  sm={6}
-                  xs={12}
-                >
-                  <TextField
-                    fullWidth
-                    required
-                    label="原密码"
-                    name="oldPassword"
-                    onChange={handleChange}
-                    type="password"
-                    value={formState.values.oldPassword}
-                    error={hasError('oldPassword')}
-                    helperText={hasError('oldPassword') ? formState.errors.oldPassword[0] : null}
-                    variant="outlined"
-                    InputProps={{
-                      inputProps: {
-                        autoComplete: 'current-password',
-                      },
-                    }}
-                  />
-                </Grid>
+                <TextField
+                  fullWidth
+                  required
+                  label="原密码"
+                  name="oldPassword"
+                  onChange={handleChange}
+                  type="password"
+                  value={formState.values.oldPassword}
+                  error={hasError('oldPassword')}
+                  helperText={hasError('oldPassword') ? formState.errors.oldPassword[0] : null}
+                  variant="outlined"
+                  InputProps={{
+                    inputProps: {
+                      autoComplete: 'current-password',
+                    },
+                  }}
+                />
               )
             }
-          </Grid>
-          <Grid
-            container
-            spacing={3}
-          >
-            <Grid
-              item
-              md={4}
-              sm={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                required
-                label="新密码"
-                name="password"
-                onChange={handleChange}
-                type="password"
-                value={formState.values.password}
-                error={hasError('password')}
-                helperText={hasError('password') ? formState.errors.password[0] : null}
-                variant="outlined"
-                InputProps={{
-                  inputProps: {
-                    autoComplete: 'new-password',
-                  },
-                }}
-              />
-            </Grid>
-          </Grid>
-          {
-            formState.values.password && (
-              <Grid
-                container
-                spacing={3}
-              >
-                <Grid
-                  item
-                  md={4}
-                  sm={6}
-                  xs={12}
+            <TextField
+              fullWidth
+              required
+              label="新密码"
+              name="password"
+              onChange={handleChange}
+              type="password"
+              value={formState.values.password}
+              error={hasError('password')}
+              helperText={hasError('password') ? formState.errors.password[0] : null}
+              variant="outlined"
+              InputProps={{
+                inputProps: {
+                  autoComplete: 'new-password',
+                },
+              }}
+            />
+            {
+              formState.values.password && (
+                <div
+                  className={
+                    clsx(classes.passwordStrength, passwordStrengthStyle[passwordStrengthCode])
+                  }
                 >
-                  <div
-                    className={
-                      clsx(classes.passwordStrength, passwordStrengthStyle[passwordStrengthCode])
-                    }
-                  >
-                    <Typography align="center">
-                      {passwordStrengthText[passwordStrengthCode]}
-                    </Typography>
-                  </div>
-                </Grid>
-              </Grid>
-            )
-          }
-          <Grid
-            container
-            spacing={3}
-          >
-            <Grid
-              item
-              md={4}
-              sm={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                required
-                label="确认密码"
-                name="confirm"
-                onChange={handleChange}
-                type="password"
-                value={formState.values.confirm}
-                error={hasError('confirm')}
-                helperText={hasError('confirm') ? formState.errors.confirm[0] : null}
-                variant="outlined"
-                InputProps={{
-                  inputProps: {
-                    autoComplete: 'new-password',
-                  },
-                }}
-              />
-            </Grid>
-          </Grid>
+                  <Typography align="center">
+                    {passwordStrengthText[passwordStrengthCode]}
+                  </Typography>
+                </div>
+              )
+            }
+            <TextField
+              fullWidth
+              required
+              label="确认密码"
+              name="confirm"
+              onChange={handleChange}
+              type="password"
+              value={formState.values.confirm}
+              error={hasError('confirm')}
+              helperText={hasError('confirm') ? formState.errors.confirm[0] : null}
+              variant="outlined"
+              InputProps={{
+                inputProps: {
+                  autoComplete: 'new-password',
+                },
+              }}
+            />
+          </Stack>
         </form>
       </CardContent>
       <Divider />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
-import { TextField } from '@material-ui/core';
+import { TextField } from '@mui/material';
 import ThemeWrapper from 'theme/ThemeWrapper';
 import CurrencyFormatInput from '..';
 

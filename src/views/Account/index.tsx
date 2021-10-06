@@ -5,9 +5,9 @@ import {
   Tab,
   Divider,
   Theme,
-} from '@material-ui/core';
-import { grey } from '@material-ui/core/colors';
-import { makeStyles, createStyles } from '@material-ui/styles';
+} from '@mui/material';
+import { grey } from '@mui/material/colors';
+import { makeStyles, createStyles } from '@mui/styles';
 import { AuthGuard, Page } from 'components';
 import {
   Header,

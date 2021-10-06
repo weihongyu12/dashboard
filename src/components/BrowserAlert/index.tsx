@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
-import { Link } from '@material-ui/core';
-import { Alert, AlertTitle } from '@material-ui/lab';
-import { makeStyles, createStyles } from '@material-ui/styles';
+import { Link, Alert, AlertTitle } from '@mui/material';
+import { makeStyles, createStyles } from '@mui/styles';
 import clsx from 'clsx';
 
 export interface BrowserAlertProps {

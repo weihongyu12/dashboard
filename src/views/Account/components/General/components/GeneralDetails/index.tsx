@@ -19,13 +19,13 @@ import {
   Switch,
   TextField,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
 import {
   Email as EmailIcon,
   Language as LanguageIcon,
   PhoneAndroid as PhoneAndroidIcon,
-} from '@material-ui/icons';
-import { makeStyles, createStyles } from '@material-ui/styles';
+} from '@mui/icons-material';
+import { makeStyles, createStyles } from '@mui/styles';
 import clsx from 'clsx';
 import { useSnackbar } from 'notistack';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

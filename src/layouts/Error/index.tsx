@@ -1,7 +1,7 @@
 import React, { FC, Suspense } from 'react';
 import { renderRoutes, RouteConfigComponentProps } from 'react-router-config';
-import { LinearProgress } from '@material-ui/core';
-import { makeStyles, createStyles } from '@material-ui/styles';
+import { LinearProgress } from '@mui/material';
+import { makeStyles, createStyles } from '@mui/styles';
 
 const useStyles = makeStyles(() => createStyles({
   root: {

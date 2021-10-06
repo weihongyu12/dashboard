@@ -14,18 +14,12 @@ module.exports = {
       },
     ],
     [
-      'babel-plugin-transform-imports',
+      'babel-plugin-direct-import',
       {
-        '@material-ui/core': {
-          // eslint-disable-next-line no-template-curly-in-string
-          transform: '@material-ui/core/${member}',
-          preventFullImport: true,
-        },
-        '@material-ui/icons': {
-          // eslint-disable-next-line no-template-curly-in-string
-          transform: '@material-ui/icons/${member}',
-          preventFullImport: true,
-        },
+        modules: [
+          '@mui/material',
+          '@mui/icons-material',
+        ],
       },
     ],
   ],

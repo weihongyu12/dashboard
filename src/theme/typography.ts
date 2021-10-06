@@ -1,3 +1,4 @@
+import { TypographyOptions } from '@mui/material/styles/createTypography';
 import palette from './palette';
 import '@fontsource/noto-sans-sc/chinese-simplified.css';
 import '@fontsource/noto-sans-sc/latin.css';
@@ -17,7 +18,7 @@ import '@fontsource/noto-sans/latin-ext.css';
 import '@fontsource/noto-sans/latin.css';
 import '@fontsource/noto-sans/devanagari.css';
 
-export default {
+const typography: TypographyOptions = {
   fontFamily: [
     'Roboto',
     '-apple-system',
@@ -40,89 +41,92 @@ export default {
     '"Segoe UI Emoji"',
     '"Segoe UI Symbol"',
   ].join(','),
+  htmlFontSize: 16,
   h1: {
     color: palette.text.primary,
     fontWeight: 500,
-    fontSize: '35px',
-    letterSpacing: '-0.24px',
-    lineHeight: '40px',
+    fontSize: 35,
+    letterSpacing: -0.24,
+    lineHeight: 40 / 35,
   },
   h2: {
     color: palette.text.primary,
     fontWeight: 500,
-    fontSize: '29px',
-    letterSpacing: '-0.24px',
-    lineHeight: '32px',
+    fontSize: 29,
+    letterSpacing: -0.24,
+    lineHeight: 32 / 29,
   },
   h3: {
     color: palette.text.primary,
     fontWeight: 500,
-    fontSize: '24px',
-    letterSpacing: '-0.06px',
-    lineHeight: '28px',
+    fontSize: 24,
+    letterSpacing: -0.06,
+    lineHeight: 28 / 24,
   },
   h4: {
     color: palette.text.primary,
     fontWeight: 500,
-    fontSize: '20px',
-    letterSpacing: '-0.06px',
-    lineHeight: '24px',
+    fontSize: 20,
+    letterSpacing: -0.06,
+    lineHeight: 24 / 20,
   },
   h5: {
     color: palette.text.primary,
     fontWeight: 500,
-    fontSize: '16px',
-    letterSpacing: '-0.05px',
-    lineHeight: '20px',
+    fontSize: 17,
+    letterSpacing: -0.05,
+    lineHeight: 20 / 17,
   },
   h6: {
     color: palette.text.primary,
     fontWeight: 500,
-    fontSize: '14px',
-    letterSpacing: '-0.05px',
-    lineHeight: '20px',
+    fontSize: 15,
+    letterSpacing: -0.05,
+    lineHeight: 20 / 15,
   },
   subtitle1: {
     color: palette.text.primary,
-    fontSize: '16px',
-    letterSpacing: '-0.05px',
-    lineHeight: '25px',
+    fontSize: 17,
+    letterSpacing: -0.05,
+    lineHeight: 25 / 17,
   },
   subtitle2: {
     color: palette.text.secondary,
     fontWeight: 400,
-    fontSize: '14px',
-    letterSpacing: '-0.05px',
-    lineHeight: '21px',
+    fontSize: 15,
+    letterSpacing: -0.05,
+    lineHeight: 21 / 15,
   },
   body1: {
     color: palette.text.primary,
-    fontSize: '14px',
-    letterSpacing: '-0.05px',
-    lineHeight: '21px',
+    fontSize: 15,
+    letterSpacing: -0.05,
+    lineHeight: 21 / 15,
   },
   body2: {
     color: palette.text.secondary,
-    fontSize: '12px',
-    letterSpacing: '-0.04px',
-    lineHeight: '18px',
+    fontSize: 13,
+    letterSpacing: -0.04,
+    lineHeight: 18 / 13,
   },
   button: {
     color: palette.text.primary,
-    fontSize: '14px',
+    fontSize: 15,
   },
   caption: {
     color: palette.text.secondary,
-    fontSize: '11px',
+    fontSize: 12,
     letterSpacing: '0.33px',
-    lineHeight: '13px',
+    lineHeight: 13 / 12,
   },
   overline: {
     color: palette.text.secondary,
-    fontSize: '11px',
+    fontSize: 12,
     fontWeight: 500,
     letterSpacing: '0.33px',
-    lineHeight: '13px',
+    lineHeight: 13 / 12,
     textTransform: 'uppercase',
   },
 };
+
+export default typography;

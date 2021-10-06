@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
@@ -16,7 +16,9 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 ReactDOM.render(
-  <App />,
+  <StrictMode>
+    <App />
+  </StrictMode>,
   document.getElementById('root'),
 );
 

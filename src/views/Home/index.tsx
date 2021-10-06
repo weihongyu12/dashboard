@@ -1,7 +1,7 @@
 import React, { useContext, FC } from 'react';
-import { Grid, Typography } from '@material-ui/core';
-import { makeStyles, createStyles } from '@material-ui/styles';
-import { Theme } from '@material-ui/core/styles';
+import { Grid, Typography } from '@mui/material';
+import { makeStyles, createStyles } from '@mui/styles';
+import { useTheme, Theme } from '@mui/material/styles';
 import { format } from 'date-fns';
 import zhHansLocale from 'date-fns/locale/zh-CN';
 import { AuthGuard, Page, SessionContext } from 'components';
@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     padding: theme.spacing(8, 3),
   },
   welcome: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%',
     },
   },
@@ -31,7 +31,7 @@ const Home: FC = () => {
   return (
     <AuthGuard roles={['ADMINISTRATOR']}>
       <Page title="工作台" className={classes.root}>
-        <Grid container justify="space-around" alignItems="center">
+        <Grid container justifyContent="space-around" alignItems="center">
           <Grid item className={classes.welcome}>
             <Typography
               component="h1"

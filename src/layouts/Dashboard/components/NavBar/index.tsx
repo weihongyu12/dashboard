@@ -8,7 +8,7 @@ import {
   Paper,
   Typography,
   Theme,
-} from '@material-ui/core';
+} from '@mui/material';
 import {
   red,
   pink,
@@ -29,8 +29,8 @@ import {
   brown,
   grey,
   blueGrey,
-} from '@material-ui/core/colors';
-import { makeStyles, createStyles } from '@material-ui/styles';
+} from '@mui/material/colors';
+import { makeStyles, createStyles } from '@mui/styles';
 import clsx from 'clsx';
 import { SessionContext } from 'components';
 import { NavigationConfig } from 'types';
@@ -175,7 +175,7 @@ const NavBar: FC<NavBarProps> = ({
           </div>
         </Drawer>
       </Hidden>
-      <Hidden mdDown>
+      <Hidden lgDown>
         <Paper
           className={clsx(classes.root, className)}
           elevation={1}

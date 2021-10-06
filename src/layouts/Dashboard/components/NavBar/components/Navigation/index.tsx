@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext, FC, ElementType } from 'react';
 import { __RouterContext } from 'react-router';
-import { Typography, Theme } from '@material-ui/core';
-import { makeStyles, createStyles } from '@material-ui/styles';
+import { Typography, Theme } from '@mui/material';
+import { makeStyles, createStyles } from '@mui/styles';
 import clsx from 'clsx';
 import { Pages } from 'types';
 import NavigationList from './components/NavigationList';

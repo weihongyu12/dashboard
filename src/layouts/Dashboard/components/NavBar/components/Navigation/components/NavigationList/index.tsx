@@ -1,6 +1,6 @@
 import React, { useContext, FC } from 'react';
 import { RouterProps } from 'react-router';
-import { List } from '@material-ui/core';
+import { List } from '@mui/material';
 import { SessionContext } from 'components';
 import { Role, Pages, NavigationChild } from 'types';
 // eslint-disable-next-line import/no-cycle

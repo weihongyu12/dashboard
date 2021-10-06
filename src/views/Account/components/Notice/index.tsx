@@ -13,15 +13,15 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Pagination,
   Typography,
   Theme,
-} from '@material-ui/core';
-import { Pagination } from '@material-ui/lab';
+} from '@mui/material';
 import {
   Mail as MailIcon,
   Drafts as DraftsIcon,
-} from '@material-ui/icons';
-import { makeStyles, createStyles } from '@material-ui/styles';
+} from '@mui/icons-material';
+import { makeStyles, createStyles } from '@mui/styles';
 import clsx from 'clsx';
 import { format, parseISO } from 'date-fns';
 import zhHansLocale from 'date-fns/locale/zh-CN';
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     display: 'flex',
     justifyContent: 'flex-end',
     alignItem: 'center',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       justifyContent: 'center',
     },
   },

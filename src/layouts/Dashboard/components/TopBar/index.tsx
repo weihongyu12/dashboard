@@ -19,11 +19,11 @@ import {
   MenuItem,
   Typography,
   Theme,
-} from '@material-ui/core';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import InputIcon from '@material-ui/icons/Input';
-import MenuIcon from '@material-ui/icons/Menu';
-import { makeStyles, createStyles } from '@material-ui/styles';
+} from '@mui/material';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import InputIcon from '@mui/icons-material/Input';
+import MenuIcon from '@mui/icons-material/Menu';
+import { makeStyles, createStyles } from '@mui/styles';
 import clsx from 'clsx';
 import { SessionContext } from 'components';
 import { authService } from 'service';
@@ -108,6 +108,7 @@ const TopBar: FC<TopBarProps> = ({
         <Hidden mdUp>
           <IconButton
             color="inherit"
+            size="large"
             onClick={onOpenNavBarMobile}
           >
             <MenuIcon />

@@ -1,9 +1,9 @@
 import React, { FC, ReactNode, CSSProperties } from 'react';
 import clsx from 'clsx';
-import { Typography } from '@material-ui/core';
-import { Theme } from '@material-ui/core/styles';
-import { makeStyles, createStyles } from '@material-ui/styles';
-import { grey } from '@material-ui/core/colors';
+import { Typography } from '@mui/material';
+import { Theme } from '@mui/material/styles';
+import { makeStyles, createStyles } from '@mui/styles';
+import { grey } from '@mui/material/colors';
 
 export interface LabelProps {
   children: ReactNode;

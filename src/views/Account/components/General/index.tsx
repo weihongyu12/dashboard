@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/styles';
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { ProfileDetails, GeneralDetails } from './components';
 
 export interface GeneralProps {

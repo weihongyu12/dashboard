@@ -18,12 +18,12 @@ import {
   TableRow,
   TableSortLabel,
   Tooltip,
-} from '@material-ui/core';
-import { createStyles, makeStyles } from '@material-ui/styles';
+} from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
 import {
   Edit as EditIcon,
   ArrowForward as ArrowForwardIcon, Close as CloseIcon,
-} from '@material-ui/icons';
+} from '@mui/icons-material';
 import clsx from 'clsx';
 import { format, parseISO } from 'date-fns';
 import zhHansLocale from 'date-fns/locale/zh-CN';
@@ -281,12 +281,12 @@ const Result: FC<ResultProps> = ({
                   </TableCell>
                   <TableCell>
                     <Tooltip title="编辑">
-                      <IconButton aria-label="编辑">
+                      <IconButton aria-label="编辑" size="large">
                         <EditIcon />
                       </IconButton>
                     </Tooltip>
                     <Tooltip title="查看详情">
-                      <IconButton aria-label="查看详情">
+                      <IconButton aria-label="查看详情" size="large">
                         <ArrowForwardIcon />
                       </IconButton>
                     </Tooltip>
@@ -296,19 +296,19 @@ const Result: FC<ResultProps> = ({
             }
           </TableBody>
         </Table>
-        <TablePagination
-          count={count}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          SelectProps={{
-            inputProps: { 'aria-label': '每页行数' },
-            native: true,
-          }}
-          component="div"
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
       </TableContainer>
+      <TablePagination
+        count={count}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        SelectProps={{
+          inputProps: { 'aria-label': '每页行数' },
+          native: true,
+        }}
+        component="div"
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
       <TableEditBar
         selected={selected}
         onDelete={handleDelete}

@@ -4,11 +4,12 @@ import {
   Button,
   Input,
   InputAdornment,
+  Stack,
   Theme,
-} from '@material-ui/core';
-import { blueGrey } from '@material-ui/core/colors';
-import { Search as SearchIcon } from '@material-ui/icons';
-import { makeStyles, createStyles } from '@material-ui/styles';
+} from '@mui/material';
+import { blueGrey } from '@mui/material/colors';
+import { Search as SearchIcon } from '@mui/icons-material';
+import { makeStyles, createStyles } from '@mui/styles';
 import clsx from 'clsx';
 
 export type SearchHandler = (keyword: string) => void;
@@ -19,10 +20,7 @@ export interface SearchProps {
 }
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
-  root: {
-    display: 'flex',
-    alignItems: 'center',
-  },
+  root: {},
   search: {
     flexGrow: 1,
     height: 42,
@@ -38,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     flexGrow: 1,
   },
   searchButton: {
-    marginLeft: theme.spacing(2),
+    minWidth: 80,
   },
 }));
 
@@ -59,8 +57,11 @@ const Search: FC<SearchProps> = ({
   };
 
   return (
-    <div
+    <Stack
       className={clsx(classes.root, className)}
+      spacing={2}
+      direction="row"
+      alignItems="center"
     >
       <Paper
         className={classes.search}
@@ -88,7 +89,7 @@ const Search: FC<SearchProps> = ({
       >
         搜索
       </Button>
-    </div>
+    </Stack>
   );
 };
 

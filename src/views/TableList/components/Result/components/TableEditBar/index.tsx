@@ -8,12 +8,12 @@ import {
   MenuItem,
   Typography,
   Theme,
-} from '@material-ui/core';
+} from '@mui/material';
 import {
   LocalOffer as LocalOfferIcon,
   DeleteOutline as DeleteIcon,
-} from '@material-ui/icons';
-import { makeStyles, createStyles } from '@material-ui/styles';
+} from '@mui/icons-material';
+import { makeStyles, createStyles } from '@mui/styles';
 import clsx from 'clsx';
 import { StatusType } from 'types';
 
@@ -83,7 +83,7 @@ const TableEditBar: FC<TableEditBarProps> = ({
           container
           spacing={2}
         >
-          <Hidden smDown>
+          <Hidden mdDown>
             <Grid
               item
               md={3}
@@ -105,6 +105,7 @@ const TableEditBar: FC<TableEditBarProps> = ({
           >
             <div className={classes.actions}>
               <Button
+                color="light"
                 startIcon={<LocalOfferIcon />}
                 aria-controls="mark-menu"
                 aria-haspopup="true"
@@ -149,6 +150,7 @@ const TableEditBar: FC<TableEditBarProps> = ({
                 </MenuItem>
               </Menu>
               <Button
+                color="light"
                 startIcon={<DeleteIcon />}
                 onClick={handleDelete}
               >

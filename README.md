@@ -7,11 +7,11 @@
 - 框架：[React](https://zh-hans.reactjs.org/) + [TypeScript](https://www.typescriptlang.org/zh/)
 - 脚手架：[Create React App](https://create-react-app.dev/)
 - 构建方案：[Webpack 4](https://webpack.js.org/)
-- UI 组件库：[Material UI](https://material-ui.com/zh/)
+- UI 组件库：[MUI](https://mui.com/zh/)
 - 路由：[React Router](https://reactrouter.com/web/)
 - 状态管理：[Redux Toolkit](https://redux-toolkit.js.org/)
 - CSS 工具：
-  - CSS in JS（[@material-ui/styles](https://material-ui.com/zh/styles/basics/)）
+  - CSS in JS（[@mui/styles](https://mui.com/zh/styles/basics/)）
   - [SCSS](https://sass-lang.com/)
 - 静态检查：
   - [ESLint](https://eslint.org/)
@@ -238,7 +238,7 @@ simple-pocket-book/
 - **Airbnb JavaScript Style Guide for TypeScript**：Airbnb 的 JavaScript 风格检查，支持 React 和 TypeScript
 - **Airbnb JavaScript Style Guide for React Hooks**：Airbnb 对于 React Hooks 检查的扩展
 - **TypeScript ESLint Plugin**：TypeScript 的代码检查
-- **MUI unused classes Plugin**：检查 Material UI 是否有未使用的 class
+- **MUI unused classes Plugin**：检查 MUI 是否有未使用的 class
 
 > 相比于 JavaScript Standard Style，Airbnb JavaScript Style 更加严格，对 Git 更加友好，并且 Airbnb 公司身为 React 框架的资深实践者，对于 React 的支持更好。
 
@@ -246,7 +246,7 @@ simple-pocket-book/
 
 此项目使用了 stylelint 用于检查 CSS，规范则是 Bootstrap 相关规范。
 
-> Bootstrap 规范对 CSS-in-JS 不是特别友好，如果有特别好的 CSS-in-JS 代码检查规范，可以推荐给我。或者等后面 Material UI 升级到 5.x，届时 CSS-in-JS 会使用 emotion
+> Bootstrap 规范对 CSS-in-JS 不是特别友好，如果有特别好的 CSS-in-JS 代码检查规范，可以推荐给我。
 
 ### 静态类型
 
@@ -388,13 +388,13 @@ CSP 通过要求开发人员将其资源从中检索的源列入白名单来削�
 
 ## 用户体验
 
-UI 框架使用了 Material UI，它基于 Google 的 Material Design，提供统一化的视觉风格。在 React 生态的 UI 框架中，Material UI 的社区相对而言比较活跃，组件和文档也非常成熟。
+UI 框架使用了 MUI，它基于 Google 的 Material Design，提供统一化的视觉风格。在 React 生态的 UI 框架中，MUI 的社区相对而言比较活跃，组件和文档也非常成熟。
 
 本次项目也使用了响应式设计，能同时支持多个设备的浏览。
 
 由于 PWA 的启用，能在桌面和移动端进行安装，从而提升了用户粘性。
 
-> 相比较于 Ant Design，Material UI 在风格上更贴近于操作系统，即便出现 UI 的同质化，系统级别的同质化还是比应用级别的同质化更容易被人接受。
+> 相比较于 Ant Design，MUI 在风格上更贴近于操作系统，即便出现 UI 的同质化，系统级别的同质化还是比应用级别的同质化更容易被人接受。
 
 ## CLI
 

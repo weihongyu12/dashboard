@@ -10,13 +10,14 @@ import React, {
 import { useHistory, useLocation } from 'react-router';
 import {
   Button,
-  CircularProgress,
   IconButton,
+  Stack,
   TextField,
   Tooltip,
   Theme,
-} from '@material-ui/core';
-import { makeStyles, createStyles } from '@material-ui/styles';
+} from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+import { makeStyles, createStyles } from '@mui/styles';
 import validate from 'validate.js';
 import clsx from 'clsx';
 import { useSnackbar } from 'notistack';
@@ -49,44 +50,11 @@ interface FormState {
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {},
-  fields: {
-    margin: theme.spacing(-1),
-    display: 'flex',
-    flexWrap: 'wrap',
-    '& > *': {
-      flexGrow: 1,
-      margin: theme.spacing(1),
-    },
-  },
-  buttonWrapper: {
-    marginTop: theme.spacing(2),
-    position: 'relative',
-  },
-  submitButton: {
-    width: '100%',
-  },
-  submitButtonProgress: {
-    color: theme.palette.secondary.main,
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    marginTop: -12,
-    marginLeft: -12,
-  },
-  socialLogin: {
-    marginTop: theme.spacing(2),
-    display: 'flex',
-    justifyContent: 'flex-end',
-  },
   iconButton: {
     color: '#fff',
     opacity: 0.3,
-    margin: theme.spacing(0, 0.5),
     '&:hover': {
       opacity: 1,
-    },
-    '&::last-child': {
-      marginRight: 0,
     },
   },
   iconButtonWeixin: {
@@ -283,7 +251,7 @@ const LoginForm: FC<LoginFormProps> = ({
       className={clsx(classes.root, className)}
       onSubmit={handleSubmit}
     >
-      <div className={classes.fields}>
+      <Stack spacing={2}>
         <TextField
           error={hasError('username')}
           required
@@ -310,44 +278,42 @@ const LoginForm: FC<LoginFormProps> = ({
           variant="outlined"
           autoComplete="password"
         />
-      </div>
-      <div className={classes.buttonWrapper}>
-        <Button
-          className={classes.submitButton}
-          color="secondary"
+        <LoadingButton
           disabled={!formState.isValid || loading}
+          loading={loading}
+          sx={{
+            width: '100%',
+          }}
+          color="secondary"
           size="large"
           type="submit"
           variant="contained"
         >
           登录
-        </Button>
-        {
-          loading && (
-            <CircularProgress
-              size={24}
-              className={classes.submitButtonProgress}
-            />
-          )
-        }
-      </div>
-      <div className={classes.socialLogin}>
-        <Tooltip title="微信账号登录">
-          <IconButton className={clsx(classes.iconButton, classes.iconButtonWeixin)} size="small">
-            <FontAwesomeIcon icon={faWeixin} />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title="QQ账号登录">
-          <IconButton className={clsx(classes.iconButton, classes.iconButtonQQ)} size="small">
-            <FontAwesomeIcon icon={faQq} />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title="微博账号登录">
-          <IconButton className={clsx(classes.iconButton, classes.iconButtonWeibo)} size="small">
-            <FontAwesomeIcon icon={faWeibo} />
-          </IconButton>
-        </Tooltip>
-      </div>
+        </LoadingButton>
+        <Stack
+          spacing={1}
+          direction="row"
+          justifyContent="flex-end"
+          sx={{ flexWrap: 'wrap' }}
+        >
+          <Tooltip title="微信账号登录">
+            <IconButton className={clsx(classes.iconButton, classes.iconButtonWeixin)} size="small">
+              <FontAwesomeIcon icon={faWeixin} />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="QQ账号登录">
+            <IconButton className={clsx(classes.iconButton, classes.iconButtonQQ)} size="small">
+              <FontAwesomeIcon icon={faQq} />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="微博账号登录">
+            <IconButton className={clsx(classes.iconButton, classes.iconButtonWeibo)} size="small">
+              <FontAwesomeIcon icon={faWeibo} />
+            </IconButton>
+          </Tooltip>
+        </Stack>
+      </Stack>
     </form>
   );
 };
