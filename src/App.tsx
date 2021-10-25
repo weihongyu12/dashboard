@@ -19,6 +19,7 @@ import theme from 'theme';
 import { store } from 'store';
 import routes from 'routes';
 import {
+  LogRocketIdentify,
   ScrollReset,
   ServiceWorker,
   SessionProvider,
@@ -70,6 +71,7 @@ const App: FC = () => {
                 <SessionProvider>
                   <CssBaseline />
                   <ServiceWorker serviceWorker={serviceWorkerRegistration} />
+                  <LogRocketIdentify />
                   <BrowserRouter>
                     <ScrollReset />
                     {routes && renderRoutes(routes)}

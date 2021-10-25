@@ -108,6 +108,7 @@
     "js-file-download": "^0.4.12",
     "localforage": "^1.10.0",
     "lodash": "^4.17.21",
+    "logrocket": "^2.1.1",
     "lottie-web": "^5.7.13",
     "material-table": "^1.69.3",
     "material-ui-confirm": "^3.0.1",

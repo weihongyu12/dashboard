@@ -3,9 +3,14 @@ import {
   ThunkAction,
   Action,
 } from '@reduxjs/toolkit';
+import LogRocket from 'logrocket';
 
 export const store = configureStore({
   reducer: {},
+  middleware: (getDefaultMiddleware) => [
+    ...getDefaultMiddleware(),
+    LogRocket.reduxMiddleware(),
+  ],
 });
 
 export * from './hooks';

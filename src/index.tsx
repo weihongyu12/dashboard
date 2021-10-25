@@ -2,6 +2,7 @@ import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
+import LogRocket from 'logrocket';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -13,6 +14,8 @@ if (process.env.NODE_ENV === 'production') {
     ],
     tracesSampleRate: 1.0,
   });
+
+  LogRocket.init('orkvv3/dashboard');
 }
 
 ReactDOM.render(

@@ -1,6 +1,7 @@
 export { default as AuthGuard } from './AuthGuard';
 export { default as BrowserAlert } from './BrowserAlert';
 export { default as Label } from './Label';
+export { default as LogRocketIdentify } from './LogRocketIdentify';
 export { default as CurrencyFormatInput } from './CurrencyFormatInput';
 export { default as Page } from './Page';
 export { default as ScrollReset } from './ScrollReset';
