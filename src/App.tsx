@@ -29,7 +29,7 @@ import 'assets/scss/index.scss';
 import 'mock';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
-const App: FC = () => {
+const App: FC = function App() {
   const notistackRef = useRef<SnackbarProvider>(null);
 
   const onClickDismiss = useCallback((key: SnackbarKey) => () => {
@@ -37,6 +37,16 @@ const App: FC = () => {
       notistackRef.current.closeSnackbar(key);
     }
   }, []);
+
+  const handleSnackbar = useCallback((key: SnackbarKey) => (
+    <IconButton
+      color="inherit"
+      size="small"
+      onClick={onClickDismiss(key)}
+    >
+      <CloseIcon />
+    </IconButton>
+  ), [onClickDismiss]);
 
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
@@ -57,15 +67,7 @@ const App: FC = () => {
               }}
               maxSnack={1}
               disableWindowBlurListener
-              action={(key) => (
-                <IconButton
-                  color="inherit"
-                  size="small"
-                  onClick={onClickDismiss(key)}
-                >
-                  <CloseIcon />
-                </IconButton>
-              )}
+              action={handleSnackbar}
             >
               <ConfirmProvider>
                 <SessionProvider>

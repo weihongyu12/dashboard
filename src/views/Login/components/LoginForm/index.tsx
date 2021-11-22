@@ -86,9 +86,9 @@ const schema = {
   },
 };
 
-const LoginForm: FC<LoginFormProps> = ({
+const LoginForm: FC<LoginFormProps> = function LoginForm({
   className = '',
-}) => {
+}) {
   const classes = useStyles();
   const { session, onSetSession } = useContext(SessionContext);
   const history = useHistory();

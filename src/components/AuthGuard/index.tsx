@@ -1,4 +1,5 @@
 import React, {
+  Fragment,
   useContext,
   useEffect,
   FC,
@@ -20,7 +21,7 @@ export interface AuthGuardProps {
   children: ReactNode;
 }
 
-const AuthGuard: FC<AuthGuardProps> = ({ roles, children }) => {
+const AuthGuard: FC<AuthGuardProps> = function AuthGuard({ roles, children }) {
   const { session, onSetSession } = useContext(SessionContext);
   const history = useHistory();
   const location = useLocation();
@@ -70,6 +71,7 @@ const AuthGuard: FC<AuthGuardProps> = ({ roles, children }) => {
     handleCheckSession();
   }, [history, location.pathname, session, onSetSession]);
 
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   return <>{children}</>;
 };
 

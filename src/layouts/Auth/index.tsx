@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => createStyles({
   },
 }));
 
-const Auth: FC<RouteConfigComponentProps> = ({ route }) => {
+const Auth: FC<RouteConfigComponentProps> = function Auth({ route }) {
   const classes = useStyles();
 
   return (

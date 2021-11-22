@@ -84,7 +84,7 @@ const schema = {
   },
 };
 
-const GeneralDetails: FC<GeneralDetailsProps> = (props) => {
+const GeneralDetails: FC<GeneralDetailsProps> = function GeneralDetails(props) {
   const classes = useStyles();
   const { className } = props;
 

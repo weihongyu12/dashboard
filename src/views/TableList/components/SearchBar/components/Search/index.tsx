@@ -40,10 +40,10 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-const Search: FC<SearchProps> = ({
+const Search: FC<SearchProps> = function Search({
   className = '',
   onSearch = () => {},
-}) => {
+}) {
   const classes = useStyles();
 
   const [keyword, setKeyword] = useState<string>('');

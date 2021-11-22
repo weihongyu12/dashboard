@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-const Login: FC = () => {
+const Login: FC = function Login() {
   const classes = useStyles();
 
   const history = useHistory();

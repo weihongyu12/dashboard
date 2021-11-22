@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => createStyles({
   },
 }));
 
-const BrowserAlert: FC<BrowserAlertProps> = ({ className = '' }) => {
+const BrowserAlert: FC<BrowserAlertProps> = function BrowserAlert({ className = '' }) {
   const classes = useStyles();
 
   const isMsIE = /MSIE|Trident/i.test(navigator.userAgent);

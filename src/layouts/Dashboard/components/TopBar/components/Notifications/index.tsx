@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-const Notifications: FC = () => {
+const Notifications: FC = function Notifications() {
   const classes = useStyles();
 
   const [list, setList] = useState<Message[]>([]);

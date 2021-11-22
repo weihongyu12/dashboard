@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-const Home: FC = () => {
+const Home: FC = function Home() {
   const classes = useStyles();
 
   const { session } = useContext(SessionContext);

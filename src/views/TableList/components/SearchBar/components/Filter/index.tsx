@@ -131,12 +131,12 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-const Filter: FC<FilterProps> = ({
+const Filter: FC<FilterProps> = function Filter({
   open,
   className = '',
   onClose = () => {},
   onFilter = () => {},
-}) => {
+}) {
   const classes = useStyles();
 
   const initialValues: FilterValue = {

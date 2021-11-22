@@ -1,4 +1,9 @@
-import React, { useState, FC, ReactNode } from 'react';
+import React, {
+  useMemo,
+  useState,
+  FC,
+  ReactNode,
+} from 'react';
 import { Session } from 'types';
 import SessionContext, { sessionDefaultValue } from '../SessionContext';
 
@@ -6,9 +11,9 @@ export interface SessionProviderProps {
   children?: ReactNode;
 }
 
-const SessionProvider: FC<SessionProviderProps> = ({
+const SessionProvider: FC<SessionProviderProps> = function SessionProvider({
   children = null,
-}) => {
+}) {
   const [session, setSession] = useState<Session>({ ...sessionDefaultValue });
 
   const handleSetSession = (newSession: Session) => {
@@ -19,14 +24,14 @@ const SessionProvider: FC<SessionProviderProps> = ({
     setSession({ ...sessionDefaultValue });
   };
 
+  const value = useMemo(() => ({
+    session,
+    onSetSession: handleSetSession,
+    onClearSession: handleClearSession,
+  }), [session]);
+
   return (
-    <SessionContext.Provider
-      value={{
-        session,
-        onSetSession: handleSetSession,
-        onClearSession: handleClearSession,
-      }}
-    >
+    <SessionContext.Provider value={value}>
       {children}
     </SessionContext.Provider>
   );

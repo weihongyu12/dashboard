@@ -118,7 +118,7 @@ const stackWidth = (col: number) => {
   return `${result}%`;
 };
 
-const Security: FC<SecurityProps> = ({ className = '' }) => {
+const Security: FC<SecurityProps> = function Security({ className = '' }) {
   const classes = useStyles();
 
   const [formState, setFormState] = useState<FormState>({

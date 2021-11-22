@@ -1,4 +1,5 @@
 import React, {
+  useCallback,
   useState,
   FC,
   MouseEvent,
@@ -88,7 +89,7 @@ const useStyles = makeStyles(() => createStyles({
   root: {},
 }));
 
-const Result: FC<ResultProps> = ({
+const Result: FC<ResultProps> = function Result({
   data,
   page,
   count,
@@ -101,7 +102,7 @@ const Result: FC<ResultProps> = ({
   onSort = () => {},
   onDelete = () => {},
   onMark = () => {},
-}) => {
+}) {
   const classes = useStyles();
 
   const [selected, setSelected] = useState<string[]>([]);
@@ -156,6 +157,26 @@ const Result: FC<ResultProps> = ({
     }
   };
 
+  const handleSnackbarAction = useCallback((key: SnackbarKey) => (
+    <>
+      <Button
+        color="inherit"
+        size="small"
+      >
+        撤销
+      </Button>
+      <IconButton
+        color="inherit"
+        size="small"
+        onClick={() => {
+          closeSnackbar(key);
+        }}
+      >
+        <CloseIcon />
+      </IconButton>
+    </>
+  ), [closeSnackbar]);
+
   const handleDelete = async () => {
     try {
       await personService.destroy(selected);
@@ -163,25 +184,7 @@ const Result: FC<ResultProps> = ({
       setSelected([]);
       enqueueSnackbar('删除成功', {
         variant: 'success',
-        action: (key: SnackbarKey) => (
-          <>
-            <Button
-              color="inherit"
-              size="small"
-            >
-              撤销
-            </Button>
-            <IconButton
-              color="inherit"
-              size="small"
-              onClick={() => {
-                closeSnackbar(key);
-              }}
-            >
-              <CloseIcon />
-            </IconButton>
-          </>
-        ),
+        action: handleSnackbarAction,
       });
     } catch (e) {
       if (e instanceof Error) {

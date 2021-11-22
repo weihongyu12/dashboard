@@ -29,11 +29,11 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-const SearchBar: FC<SearchBarProps> = ({
+const SearchBar: FC<SearchBarProps> = function SearchBar({
   className = '',
   onSearch = () => {},
   onFilter = () => {},
-}) => {
+}) {
   const classes = useStyles();
 
   const [openFilter, setOpenFilter] = useState(false);

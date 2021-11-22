@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-const ProfileDetails: FC<ProfileDetailsProps> = ({ className = '' }) => {
+const ProfileDetails: FC<ProfileDetailsProps> = function ProfileDetails({ className = '' }) {
   const classes = useStyles();
 
   const { session } = useContext(SessionContext);

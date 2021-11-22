@@ -72,12 +72,12 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-const NavBar: FC<NavBarProps> = ({
+const NavBar: FC<NavBarProps> = function NavBar({
   navigation,
   className = '',
   openMobile = false,
   onMobileClose = () => {},
-}) => {
+}) {
   const classes = useStyles();
   const location = useLocation();
 

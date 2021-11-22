@@ -12,11 +12,11 @@ export interface NavigationListProps {
   pages?: Pages[] | NavigationChild[];
 }
 
-const NavigationList: FC<NavigationListProps> = ({
+const NavigationList: FC<NavigationListProps> = function NavigationList({
   router,
   depth = 0,
   pages = [],
-}) => {
+}) {
   const { session } = useContext(SessionContext);
   const { user } = session;
 

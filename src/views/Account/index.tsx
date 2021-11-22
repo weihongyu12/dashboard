@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-const Account: FC = () => {
+const Account: FC = function Account() {
   const classes = useStyles();
   const history = useHistory();
   const { tab } = useParams<{ tab: string }>();

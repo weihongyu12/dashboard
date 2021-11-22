@@ -13,12 +13,12 @@ export interface ChildRoutesProps {
   depth: number;
 }
 
-const ChildRoutes: FC<ChildRoutesProps> = ({
+const ChildRoutes: FC<ChildRoutesProps> = function ChildRoutes({
   router,
   page,
   depth,
   role,
-}) => {
+}) {
   const location = useLocation();
 
   const showPages = page.permission.includes(role);

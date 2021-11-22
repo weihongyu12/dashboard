@@ -20,13 +20,13 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-const Navigation: FC<NavigationProps> = ({
+const Navigation: FC<NavigationProps> = function Navigation({
   pages,
   title = '',
   className = '',
   component: Component = 'nav',
   ...rest
-}) => {
+}) {
   const classes = useStyles();
   const router = useContext(__RouterContext);
 

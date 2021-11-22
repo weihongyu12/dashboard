@@ -2,7 +2,7 @@ import { useContext, useEffect, FC } from 'react';
 import LogRocket from 'logrocket';
 import SessionContext from '../SessionContext';
 
-const LogRocketIdentify: FC = () => {
+const LogRocketIdentify: FC = function LogRocketIdentify() {
   const { session } = useContext(SessionContext);
 
   useEffect(() => {

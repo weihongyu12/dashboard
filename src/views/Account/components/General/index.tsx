@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => ({
   root: {},
 }));
 
-const General: FC<GeneralProps> = ({ className = '' }) => {
+const General: FC<GeneralProps> = function General({ className = '' }) {
   const classes = useStyles();
 
   return (

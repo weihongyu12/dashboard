@@ -56,10 +56,10 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-const Tag: FC<TagProps> = ({
+const Tag: FC<TagProps> = function Tag({
   color = 'primary',
   children,
-}) => {
+}) {
   const classes = useStyles();
 
   return (

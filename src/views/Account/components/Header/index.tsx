@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => createStyles({
   root: {},
 }));
 
-const Header: FC<HeaderProps> = ({ className = '' }) => {
+const Header: FC<HeaderProps> = function Header({ className = '' }) {
   const classes = useStyles();
 
   return (

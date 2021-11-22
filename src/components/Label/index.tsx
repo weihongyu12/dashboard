@@ -55,14 +55,14 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-const Label: FC<LabelProps> = ({
+const Label: FC<LabelProps> = function Label({
   className = '',
   variant = 'contained',
   color = grey[600],
   shape = 'rounded',
   children = null,
   style = {},
-}) => {
+}) {
   const classes = useStyles();
 
   const rootClassName = clsx(

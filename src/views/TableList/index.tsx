@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-const TableList: FC = () => {
+const TableList: FC = function TableList() {
   const classes = useStyles();
   const [data, setData] = useState<PersonResponse[]>([]);
   const [pages, setPages] = useState<number>(0);

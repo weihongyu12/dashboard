@@ -42,7 +42,7 @@ const useStyles = makeStyles(() => createStyles({
   },
 }));
 
-const Dashboard: FC<DashboardProps> = ({ navigation, route }) => {
+const Dashboard: FC<DashboardProps> = function Dashboard({ navigation, route }) {
   const classes = useStyles();
   const [openNavBarMobile, setOpenNavBarMobile] = useState(false);
 

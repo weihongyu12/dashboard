@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-const Error500: FC = () => {
+const Error500: FC = function Error500() {
   const classes = useStyles();
   const theme = useTheme();
   const mobileDevice = useMediaQuery(theme.breakpoints.down('md'));

@@ -41,12 +41,12 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-const TableEditBar: FC<TableEditBarProps> = ({
+const TableEditBar: FC<TableEditBarProps> = function TableEditBar({
   selected,
   className = '',
   onDelete = () => {},
   onMark = () => {},
-}) => {
+}) {
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

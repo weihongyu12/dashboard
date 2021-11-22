@@ -8,7 +8,7 @@ import theme from './index';
  * 用于包装 React Styleguidist 和 单元测试
  * 请不要直接用于业务代码！！！
  */
-const ThemeWrapper = (props) => {
+const ThemeWrapper = function ThemeWrapper(props) {
   const { children } = props;
 
   return (

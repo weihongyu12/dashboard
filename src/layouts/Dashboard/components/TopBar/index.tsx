@@ -63,10 +63,10 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-const TopBar: FC<TopBarProps> = ({
+const TopBar: FC<TopBarProps> = function TopBar({
   className = '',
   onOpenNavBarMobile = () => {},
-}) => {
+}) {
   const classes = useStyles();
   const { session, onClearSession } = useContext(SessionContext);
   const [anchorEl, setAnchorEl] = useState<any | null>(null);

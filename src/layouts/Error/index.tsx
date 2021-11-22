@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => createStyles({
   },
 }));
 
-const Error: FC<RouteConfigComponentProps> = ({ route }) => {
+const Error: FC<RouteConfigComponentProps> = function Error({ route }) {
   const classes = useStyles();
 
   return (

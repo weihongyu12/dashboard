@@ -15,34 +15,36 @@ type CurrencyFormatInputProps = {
   suffix?: string;
 };
 
-const CurrencyFormatInput: FC<CurrencyFormatInputProps> = ({
+const CurrencyFormatInput: FC<CurrencyFormatInputProps> = function CurrencyFormatInput({
   inputRef,
   onChange,
   name,
   prefix = '',
   suffix = '',
   ...rest
-}) => (
-  <NumberFormat
+}) {
+  return (
+    <NumberFormat
     /* eslint-disable-next-line react/jsx-props-no-spreading */
-    {...rest}
-    getInputRef={inputRef}
-    onValueChange={(values) => {
-      onChange({
-        target: {
-          name,
-          value: values.value,
-        },
-      });
-    }}
-    thousandSeparator
-    isNumericString
-    prefix={prefix}
-    suffix={suffix}
-    decimalScale={2}
-    data-testid="CurrencyFormatInput"
-  />
-);
+      {...rest}
+      getInputRef={inputRef}
+      onValueChange={(values) => {
+        onChange({
+          target: {
+            name,
+            value: values.value,
+          },
+        });
+      }}
+      thousandSeparator
+      isNumericString
+      prefix={prefix}
+      suffix={suffix}
+      decimalScale={2}
+      data-testid="CurrencyFormatInput"
+    />
+  );
+};
 
 CurrencyFormatInput.defaultProps = {
   prefix: '',

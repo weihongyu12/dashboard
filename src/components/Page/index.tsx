@@ -13,13 +13,15 @@ export interface PageProps {
   className?: string;
 }
 
-const Page: FC<PageProps> = ({ title, children, className = '' }) => (
-  <div className={className} data-testid="page">
-    <Helmet>
-      <title>{title}</title>
-    </Helmet>
-    {children}
-  </div>
-);
+const Page: FC<PageProps> = function Page({ title, children, className = '' }) {
+  return (
+    <div className={className} data-testid="page">
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
+      {children}
+    </div>
+  );
+};
 
 export default Page;

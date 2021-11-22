@@ -5,7 +5,7 @@ import React, {
   FC,
 } from 'react';
 import { Button, Alert, AlertTitle } from '@mui/material';
-import { useSnackbar } from 'notistack';
+import { useSnackbar, SnackbarKey, SnackbarMessage } from 'notistack';
 
 type Config = {
   onSuccess?: (registration: ServiceWorkerRegistration) => void;
@@ -56,7 +56,7 @@ const reducer = (state: SwStoreState, action: SwAction) => {
   }
 };
 
-const ServiceWorker: FC<ServiceWorkerProps> = ({ serviceWorker }) => {
+const ServiceWorker: FC<ServiceWorkerProps> = function ServiceWorker({ serviceWorker }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const {
     serviceWorkerInitialized: isServiceWorkerInitialized,
@@ -103,6 +103,25 @@ const ServiceWorker: FC<ServiceWorkerProps> = ({ serviceWorker }) => {
     }
   }, [isServiceWorkerInitialized, enqueueSnackbar]);
 
+  const snackbarContent = useCallback((key: SnackbarKey, message: SnackbarMessage) => (
+    <Alert
+      severity="info"
+      variant="filled"
+      action={(
+        <Button
+          color="inherit"
+          size="small"
+          onClick={updateServiceWorker}
+        >
+          刷新
+        </Button>
+      )}
+    >
+      <AlertTitle color="inherit">提示</AlertTitle>
+      {message}
+    </Alert>
+  ), [updateServiceWorker]);
+
   useEffect(() => {
     if (isServiceWorkerUpdated) {
       enqueueSnackbar('有可用的新版本，请刷新页面', {
@@ -111,27 +130,10 @@ const ServiceWorker: FC<ServiceWorkerProps> = ({ serviceWorker }) => {
           vertical: 'bottom',
           horizontal: 'right',
         },
-        content: (key, message) => (
-          <Alert
-            severity="info"
-            variant="filled"
-            action={(
-              <Button
-                color="inherit"
-                size="small"
-                onClick={updateServiceWorker}
-              >
-                刷新
-              </Button>
-            )}
-          >
-            <AlertTitle color="inherit">提示</AlertTitle>
-            {message}
-          </Alert>
-        ),
+        content: snackbarContent,
       });
     }
-  }, [isServiceWorkerUpdated, updateServiceWorker, enqueueSnackbar]);
+  }, [isServiceWorkerUpdated, updateServiceWorker, enqueueSnackbar, snackbarContent]);
 
   return null;
 };

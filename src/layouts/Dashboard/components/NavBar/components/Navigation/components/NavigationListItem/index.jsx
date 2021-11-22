@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NavigationListItem = (props) => {
+const NavigationListItem = function NavigationListItem(props) {
   const {
     title,
     href,

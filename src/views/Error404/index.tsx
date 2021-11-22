@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-const Error404: FC = () => {
+const Error404: FC = function Error404() {
   const classes = useStyles();
   const theme = useTheme();
   const mobileDevice = useMediaQuery(theme.breakpoints.down('md'));
