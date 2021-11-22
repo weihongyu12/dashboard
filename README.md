@@ -59,7 +59,6 @@ Redux Toolkit 是一个 Redux 的工具集，用于简化 Redux 的操作，它�
 | [localforage](https://localforage.github.io/localForage/) | Apache-2.0 |
 | [lodash](https://lodash.com/) | MIT |
 | [lottie-web](https://airbnb.io/lottie) | MIT |
-| [material-table](https://material-table.com/) | MIT |
 | [material-ui-confirm](https://github.com/jonatanklosko/material-ui-confirm) | MIT |
 | [mathjs](https://mathjs.org/) | Apache-2.0 |
 | [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) | WTFPL |
@@ -77,7 +76,6 @@ Redux Toolkit 是一个 Redux 的工具集，用于简化 Redux 的操作，它�
 | [react-image-file-resizer](https://github.com/onurzorluer/react-image-file-resizer) | MIT |
 | [react-infinite-scroll-component](https://react-infinite-scroll-component.netlify.com) | MIT |
 | [react-markdown](https://remarkjs.github.io/react-markdown/) | MIT |
-| [react-modal-image](https://aautio.github.io/react-modal-image/) | MIT |
 | [react-number-format](https://github.com/s-yadav/react-number-format) | MIT |
 | [react-perfect-scrollbar](https://www.npmjs.com/package/react-perfect-scrollbar) | MIT |
 | [react-window](react-window.now.sh) | MIT |
