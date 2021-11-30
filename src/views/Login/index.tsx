@@ -1,5 +1,5 @@
 import React, { useEffect, FC } from 'react';
-import { Link as RouterLink, useHistory, useLocation } from 'react-router-dom';
+import { Link as RouterLink, useNavigate, useLocation } from 'react-router-dom';
 import {
   Card,
   CardContent,
@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 const Login: FC = function Login() {
   const classes = useStyles();
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
@@ -92,10 +92,10 @@ const Login: FC = function Login() {
       const querystring = search.replace('?', '');
       const { redirect } = qs.parse(querystring);
       if (redirect === '/auth/login') {
-        history.replace('/auth/login');
+        navigate('/auth/login', { replace: true });
       }
     }
-  }, [history, location, location.search]);
+  }, [navigate, location, location.search]);
 
   return (
     <Page

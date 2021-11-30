@@ -1,20 +1,15 @@
 import React, { FC } from 'react';
-import { RouterProps } from 'react-router';
 import { matchPath, useLocation } from 'react-router-dom';
 import { Role, Pages, NavigationChild } from 'types';
-// eslint-disable-next-line import/no-cycle
-import NavigationList from '../NavigationList';
-import NavigationListItem from '../NavigationListItem';
+import { NavigationList, NavigationListItem } from '../index';
 
 export interface ChildRoutesProps {
-  router: RouterProps;
   role: Role;
   page: Pages | NavigationChild;
   depth: number;
 }
 
 const ChildRoutes: FC<ChildRoutesProps> = function ChildRoutes({
-  router,
   page,
   depth,
   role,
@@ -24,10 +19,7 @@ const ChildRoutes: FC<ChildRoutesProps> = function ChildRoutes({
   const showPages = page.permission.includes(role);
 
   const renderChildrenList = (pages: Pages) => {
-    const open = matchPath(location.pathname, {
-      path: pages.href,
-      exact: false,
-    });
+    const open = matchPath(location.pathname, pages.href);
 
     return showPages ? (
       <NavigationListItem
@@ -41,7 +33,6 @@ const ChildRoutes: FC<ChildRoutesProps> = function ChildRoutes({
         <NavigationList
           depth={depth + 1}
           pages={pages.children}
-          router={router}
         />
       </NavigationListItem>
     ) : null;

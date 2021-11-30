@@ -4,7 +4,7 @@ import React, {
   FC,
   MouseEventHandler,
 } from 'react';
-import { Link as RouterLink, useHistory } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import {
   AppBar,
   Button,
@@ -70,7 +70,7 @@ const TopBar: FC<TopBarProps> = function TopBar({
   const classes = useStyles();
   const { session, onClearSession } = useContext(SessionContext);
   const [anchorEl, setAnchorEl] = useState<any | null>(null);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const appBarColor = isWorkWeixin ? 'default' : 'primary';
 
@@ -89,7 +89,7 @@ const TopBar: FC<TopBarProps> = function TopBar({
       navigator.credentials.preventSilentAccess();
     }
     await localStorage.removeItem('accessToken');
-    history.push('/auth/login');
+    navigate('/auth/login');
   };
 
   return (

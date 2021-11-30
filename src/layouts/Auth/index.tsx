@@ -1,5 +1,5 @@
 import React, { FC, Suspense } from 'react';
-import { renderRoutes, RouteConfigComponentProps } from 'react-router-config';
+import { Outlet } from 'react-router-dom';
 import { LinearProgress } from '@mui/material';
 import { makeStyles, createStyles } from '@mui/styles';
 
@@ -9,13 +9,13 @@ const useStyles = makeStyles(() => createStyles({
   },
 }));
 
-const Auth: FC<RouteConfigComponentProps> = function Auth({ route }) {
+const Auth: FC = function Auth() {
   const classes = useStyles();
 
   return (
     <main className={classes.root}>
       <Suspense fallback={<LinearProgress />}>
-        {route?.routes && renderRoutes(route.routes)}
+        <Outlet />
       </Suspense>
     </main>
   );

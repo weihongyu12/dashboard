@@ -1,19 +1,15 @@
 import React, { useContext, FC } from 'react';
-import { RouterProps } from 'react-router';
 import { List } from '@mui/material';
 import { SessionContext } from 'components';
 import { Role, Pages, NavigationChild } from 'types';
-// eslint-disable-next-line import/no-cycle
-import ChildRoutes from '../ChildRoutes';
+import { ChildRoutes } from '../index';
 
 export interface NavigationListProps {
-  router: RouterProps;
   depth?: number;
   pages?: Pages[] | NavigationChild[];
 }
 
 const NavigationList: FC<NavigationListProps> = function NavigationList({
-  router,
   depth = 0,
   pages = [],
 }) {
@@ -26,7 +22,6 @@ const NavigationList: FC<NavigationListProps> = function NavigationList({
         pages.map((page: Pages | NavigationChild) => (
           <ChildRoutes
             key={page.title}
-            router={router}
             page={page}
             depth={depth}
             role={user?.role as Role}

@@ -7,9 +7,8 @@ import React, {
   ChangeEvent,
   FormEvent,
 } from 'react';
-import { useHistory, useLocation } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 import {
-  Button,
   IconButton,
   Stack,
   TextField,
@@ -91,7 +90,7 @@ const LoginForm: FC<LoginFormProps> = function LoginForm({
 }) {
   const classes = useStyles();
   const { session, onSetSession } = useContext(SessionContext);
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
   const [formState, setFormState] = useState<FormState>({
@@ -116,14 +115,14 @@ const LoginForm: FC<LoginFormProps> = function LoginForm({
       const querystring = search.replace('?', '');
       const { redirect } = qs.parse(querystring);
       if (isString(redirect)) {
-        history.push(redirect);
+        navigate(redirect);
         return;
       }
-      history.push('/');
+      navigate('/');
       return;
     }
-    history.push('/');
-  }, [history, location]);
+    navigate('/');
+  }, [navigate, location]);
 
   const fetchLogin = useCallback(async (username: string, password: string) => {
     setLoading(true);

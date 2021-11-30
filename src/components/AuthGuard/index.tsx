@@ -1,11 +1,10 @@
 import React, {
-  Fragment,
   useContext,
   useEffect,
   FC,
   ReactNode,
 } from 'react';
-import { useHistory, useLocation } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 import { Role } from 'types';
 import { authService } from 'service';
 import SessionContext from '../SessionContext';
@@ -23,7 +22,7 @@ export interface AuthGuardProps {
 
 const AuthGuard: FC<AuthGuardProps> = function AuthGuard({ roles, children }) {
   const { session, onSetSession } = useContext(SessionContext);
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
@@ -39,18 +38,18 @@ const AuthGuard: FC<AuthGuardProps> = function AuthGuard({ roles, children }) {
     if (session.loggedIn && !(sessionUser?.username)) {
       fetchUserInfo();
     }
-  }, [history, session, onSetSession]);
+  }, [navigate, session, onSetSession]);
 
   useEffect(() => {
     if (session.loggedIn) {
       const sessionUser = session.user;
       if (sessionUser?.role) {
         if (!roles.includes(sessionUser.role)) {
-          history.push('/errors/error-403');
+          navigate('/errors/error-403');
         }
       }
     }
-  }, [history, roles, session.loggedIn, session.user]);
+  }, [navigate, roles, session.loggedIn, session.user]);
 
   useEffect(() => {
     const handleCheckSession = async () => {
@@ -63,13 +62,13 @@ const AuthGuard: FC<AuthGuardProps> = function AuthGuard({ roles, children }) {
             loggedIn: true,
           });
         } else {
-          history.push('/auth/login');
+          navigate('/auth/login');
         }
       }
     };
 
     handleCheckSession();
-  }, [history, location.pathname, session, onSetSession]);
+  }, [navigate, location.pathname, session, onSetSession]);
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
   return <>{children}</>;

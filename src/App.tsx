@@ -5,7 +5,6 @@ import React, {
   FC,
 } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { renderRoutes } from 'react-router-config';
 import { Provider as StoreProvider } from 'react-redux';
 import { CssBaseline, IconButton } from '@mui/material';
 import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
@@ -17,7 +16,7 @@ import { SnackbarProvider, SnackbarKey } from 'notistack';
 import { ConfirmProvider } from 'material-ui-confirm';
 import theme from 'theme';
 import { store } from 'store';
-import routes from 'routes';
+import { RouterConfig } from 'routes';
 import {
   LogRocketIdentify,
   ScrollReset,
@@ -76,7 +75,7 @@ const App: FC = function App() {
                   <LogRocketIdentify />
                   <BrowserRouter>
                     <ScrollReset />
-                    {routes && renderRoutes(routes)}
+                    <RouterConfig />
                   </BrowserRouter>
                 </SessionProvider>
               </ConfirmProvider>

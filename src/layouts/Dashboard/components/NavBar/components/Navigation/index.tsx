@@ -1,11 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext, FC, ElementType } from 'react';
-import { __RouterContext } from 'react-router';
+import React, { FC, ElementType } from 'react';
 import { Typography, Theme } from '@mui/material';
 import { makeStyles, createStyles } from '@mui/styles';
 import clsx from 'clsx';
 import { Pages } from 'types';
-import NavigationList from './components/NavigationList';
+import { NavigationList } from './components';
 
 export interface NavigationProps {
   pages: Pages[];
@@ -28,7 +27,6 @@ const Navigation: FC<NavigationProps> = function Navigation({
   ...rest
 }) {
   const classes = useStyles();
-  const router = useContext(__RouterContext);
 
   return (
     <Component
@@ -39,7 +37,6 @@ const Navigation: FC<NavigationProps> = function Navigation({
       <NavigationList
         depth={0}
         pages={pages}
-        router={router}
       />
     </Component>
   );

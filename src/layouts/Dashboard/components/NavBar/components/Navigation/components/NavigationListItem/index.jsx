@@ -1,8 +1,10 @@
-import React, { useState, forwardRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { NavLink as RouterLink } from 'react-router-dom';
+import { useMatch, useResolvedPath } from 'react-router';
 import {
-  ListItem, Button, Collapse,
+  Button,
+  Collapse,
+  ListItem,
 } from '@mui/material';
 import { blueGrey } from '@mui/material/colors';
 import {
@@ -11,16 +13,7 @@ import {
 } from '@mui/icons-material';
 import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
-
-const CustomRouterLink = forwardRef((props, ref) => (
-  <div
-    ref={ref}
-    style={{ flexGrow: 1 }}
-  >
-    {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-    <RouterLink {...props} />
-  </div>
-));
+import { CustomRouterLink } from '../index';
 
 const useStyles = makeStyles((theme) => ({
   item: {
@@ -93,6 +86,9 @@ const NavigationListItem = function NavigationListItem(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(openProp);
 
+  const resolved = useResolvedPath(href);
+  const match = useMatch({ path: resolved.pathname, end: true });
+
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
@@ -142,24 +138,15 @@ const NavigationListItem = function NavigationListItem(props) {
       disableGutters
     >
       <Button
-        activeClassName={classes.active}
-        className={clsx(classes.buttonLeaf, `depth-${depth}`)}
+        color="light"
+        className={clsx({
+          [classes.buttonLeaf]: true,
+          [`depth-${depth}`]: true,
+          [classes.active]: !!match,
+        })}
         component={CustomRouterLink}
-        exact
         style={style}
         to={href}
-        isActive={(match, location) => {
-          if (!match) {
-            return false;
-          }
-          if (match.url === location.pathname) {
-            if (location.search) {
-              return `${location.pathname}${location.search}` === href;
-            }
-            return true;
-          }
-          return false;
-        }}
       >
         {Icon && <Icon className={classes.icon} />}
         {title}

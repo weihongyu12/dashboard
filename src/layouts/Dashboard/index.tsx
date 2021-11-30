@@ -4,14 +4,14 @@ import React, {
   useState,
   FC,
 } from 'react';
-import { renderRoutes, RouteConfigComponentProps } from 'react-router-config';
+import { Outlet } from 'react-router-dom';
 import { LinearProgress } from '@mui/material';
 import { makeStyles, createStyles } from '@mui/styles';
 import { NavigationConfig } from 'types';
 
 import { NavBar, TopBar } from './components';
 
-export interface DashboardProps extends RouteConfigComponentProps {
+export interface DashboardProps {
   navigation: NavigationConfig;
 }
 
@@ -42,7 +42,7 @@ const useStyles = makeStyles(() => createStyles({
   },
 }));
 
-const Dashboard: FC<DashboardProps> = function Dashboard({ navigation, route }) {
+const Dashboard: FC<DashboardProps> = function Dashboard({ navigation }) {
   const classes = useStyles();
   const [openNavBarMobile, setOpenNavBarMobile] = useState(false);
 
@@ -69,7 +69,7 @@ const Dashboard: FC<DashboardProps> = function Dashboard({ navigation, route }) 
         />
         <main className={classes.content} id="layout-dashboard-main">
           <Suspense fallback={<LinearProgress />}>
-            {route?.routes && renderRoutes(route.routes)}
+            <Outlet />
           </Suspense>
         </main>
       </div>

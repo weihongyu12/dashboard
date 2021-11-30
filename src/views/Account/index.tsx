@@ -1,5 +1,5 @@
 import React, { FC, ChangeEvent } from 'react';
-import { Redirect, useHistory, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import {
   Tabs,
   Tab,
@@ -36,11 +36,11 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 
 const Account: FC = function Account() {
   const classes = useStyles();
-  const history = useHistory();
-  const { tab } = useParams<{ tab: string }>();
+  const navigate = useNavigate();
+  const { tab } = useParams();
 
   const handleTabsChange = (event: ChangeEvent<unknown>, value: string) => {
-    history.push(value);
+    navigate(value);
   };
 
   const tabs = [
@@ -50,11 +50,11 @@ const Account: FC = function Account() {
   ];
 
   if (!tab) {
-    return <Redirect to="/account/general" />;
+    return <Navigate to="/account/general" replace />;
   }
 
   if (!tabs.find((t) => t.value === tab)) {
-    return <Redirect to="/errors/error-404" />;
+    return <Navigate to="/errors/error-404" replace />;
   }
 
   return (
