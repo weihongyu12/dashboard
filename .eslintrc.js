@@ -8,7 +8,6 @@ module.exports = {
   },
   plugins: [
     '@typescript-eslint',
-    'mui-unused-classes',
   ],
   extends: [
     'airbnb',
@@ -20,9 +19,6 @@ module.exports = {
   env: {
     browser: true,
     node: true,
-  },
-  rules: {
-    'mui-unused-classes/unused-classes': 'error',
   },
   overrides: [
     {

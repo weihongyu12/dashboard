@@ -2,8 +2,7 @@
 
 module.exports = {
   extends: [
-    'stylelint-config-twbs-bootstrap/css',
-    'stylelint-config-twbs-bootstrap/scss',
+    'stylelint-config-twbs-bootstrap',
   ],
   ignoreFiles: [
     '**/*.d.ts',

@@ -1,7 +1,6 @@
 module.exports = {
   roots: [
-    '<rootDir>/src',
-    '<rootDir>/tests',
+    '<rootDir>/src'
   ],
   collectCoverageFrom: [
     'src/**/*.{js,jsx,ts,tsx}',
@@ -18,7 +17,7 @@ module.exports = {
     '<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}',
     '<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}',
   ],
-  // testEnvironment: 'jest-environment-jsdom-fourteen',
+  testEnvironment: 'jsdom',
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest',
     '^.+\\.css$': '<rootDir>/config/jest/cssTransform.js',
@@ -28,9 +27,7 @@ module.exports = {
     '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$',
     '^.+\\.module\\.(css|sass|scss)$',
   ],
-  modulePaths: [
-    '<rootDir>/src',
-  ],
+  modulePaths: [],
   moduleNameMapper: {
     '^react-native$': 'react-native-web',
     '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
@@ -51,4 +48,5 @@ module.exports = {
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname',
   ],
+  resetMocks: true,
 };
