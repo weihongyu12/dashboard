@@ -38,10 +38,10 @@ import {
 import { DateRangePicker } from '@mui/lab';
 import { makeStyles, createStyles } from '@mui/styles';
 import clsx from 'clsx';
-import accounting from 'accounting';
 import { format } from 'date-fns';
 import { throttle } from 'lodash';
 import { departmentService } from 'service';
+import formatCurrency from 'utils/formatCurrency';
 import { DepartmentResponse } from 'types';
 
 type FieldChangeEvent =
@@ -297,7 +297,7 @@ const Filter: FC<FilterProps> = function Filter({
                     alignItems="center"
                   >
                     <Typography variant="body1">
-                      {accounting.formatMoney(values.amount[0], '¥', 0)}
+                      {formatCurrency(values.amount[0], { minimumFractionDigits: 0 })}
                     </Typography>
                     <Slider
                       className={classes.flexGrow}
@@ -309,7 +309,7 @@ const Filter: FC<FilterProps> = function Filter({
                       valueLabelDisplay="auto"
                     />
                     <Typography variant="body1">
-                      {accounting.formatMoney(values.amount[1], '¥', 0)}
+                      {formatCurrency(values.amount[1], { minimumFractionDigits: 0 })}
                     </Typography>
                   </Stack>
                 </Box>

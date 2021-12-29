@@ -28,11 +28,11 @@ import {
 import clsx from 'clsx';
 import { format, parseISO } from 'date-fns';
 import zhHansLocale from 'date-fns/locale/zh-CN';
-import accounting from 'accounting';
 import { toInteger } from 'lodash';
 import { useSnackbar, SnackbarKey } from 'notistack';
 import { personService } from 'service';
-import Tag from 'components/Tag';
+import { Tag } from 'components';
+import formatCurrency from 'utils/formatCurrency';
 import { Order, StatusType, PersonResponse } from 'types';
 import TableEditBar from './components/TableEditBar';
 
@@ -275,7 +275,7 @@ const Result: FC<ResultProps> = function Result({
                   <TableCell>{row.name}</TableCell>
                   <TableCell>{row.gender}</TableCell>
                   <TableCell>{row.mobile}</TableCell>
-                  <TableCell>{accounting.formatMoney(row.amount, '¥')}</TableCell>
+                  <TableCell>{formatCurrency(row.amount)}</TableCell>
                   <TableCell>{format(parseISO(row.date), 'PPP', { locale: zhHansLocale })}</TableCell>
                   <TableCell>
                     <Tag color={statusMap[row.status].color}>
