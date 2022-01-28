@@ -44,46 +44,45 @@ Redux Toolkit 是一个 Redux 的工具集，用于简化 Redux 的操作，它�
 
 ### 相关依赖
 
-| Package | License |
-|---------|---------|
-| [accounting](http://openexchangerates.github.io/accounting.js/) | MIT |
-| [async-es](https://caolan.github.io/async/v3/) | MIT |
-| [axios](https://github.com/axios/axios) | MIT |
-| [crypto-js](http://github.com/brix/crypto-js) | MIT |
-| [date-fns](https://date-fns.org/) | MIT |
-| [draft-js](http://draftjs.org/) | MIT |
-| [fontawesome](https://fontawesome.com/) | MIT |
-| [fullcalendar](https://fullcalendar.io/) | MIT |
-| [js-cookie](https://github.com/js-cookie/js-cookie) | MIT |
-| [js-file-download](https://github.com/kennethjiang/js-file-download) | MIT |
-| [localforage](https://localforage.github.io/localForage/) | Apache-2.0 |
-| [lodash](https://lodash.com/) | MIT |
-| [lottie-web](https://airbnb.io/lottie) | MIT |
-| [material-ui-confirm](https://github.com/jonatanklosko/material-ui-confirm) | MIT |
-| [mathjs](https://mathjs.org/) | Apache-2.0 |
-| [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) | WTFPL |
-| [notistack](https://www.iamhosseindhv.com/notistack) | MIT |
-| [nzh](http://cnwhy.github.io/nzh) | MIT |
-| [print-js](https://printjs.crabbly.com/) | MIT |
-| [prismjs](https://prismjs.com/) | MIT |
-| [qs](https://github.com/ljharb/qs) | BSD-3-Clause |
-| [react-apexcharts](https://www.npmjs.com/package/react-apexcharts) | MIT |
-| [react-beautiful-dnd](https://react-beautiful-dnd.netlify.com) | Apache-2.0 |
-| [react-big-calendar](https://jquense.github.io/react-big-calendar/examples/index.html) | MIT |
-| [react-draggable](https://github.com/react-grid-layout/react-draggable) | MIT |
-| [react-dropzone](https://react-dropzone.js.org/) | MIT |
-| [react-helmet](https://github.com/nfl/react-helmet) | MIT |
-| [react-image-file-resizer](https://github.com/onurzorluer/react-image-file-resizer) | MIT |
-| [react-infinite-scroll-component](https://react-infinite-scroll-component.netlify.com) | MIT |
-| [react-markdown](https://remarkjs.github.io/react-markdown/) | MIT |
-| [react-number-format](https://github.com/s-yadav/react-number-format) | MIT |
-| [react-perfect-scrollbar](https://www.npmjs.com/package/react-perfect-scrollbar) | MIT |
-| [react-window](react-window.now.sh) | MIT |
-| [tai-password-strength](https://tests-always-included.github.io/password-strength/) | MIT |
-| [uuid](https://github.com/uuidjs/uuid) | MIT |
-| [validate.js](http://validatejs.org/) | MIT |
-| [web-vitals](https://web.dev/vitals) | MIT |
-| [workbox](https://developers.google.com/web/tools/workbox) | MIT |
+| Package                                                                                | License            |
+|----------------------------------------------------------------------------------------|--------------------|
+| [async-es](https://caolan.github.io/async/v3/)                                         | MIT                |
+| [axios](https://github.com/axios/axios)                                                | MIT                |
+| [crypto-js](http://github.com/brix/crypto-js)                                          | MIT                |
+| [date-fns](https://date-fns.org/)                                                      | MIT                |
+| [draft-js](http://draftjs.org/)                                                        | MIT                |
+| [fontawesome](https://fontawesome.com/)                                                | MIT                |
+| [fullcalendar](https://fullcalendar.io/)                                               | MIT                |
+| [js-cookie](https://github.com/js-cookie/js-cookie)                                    | MIT                |
+| [js-file-download](https://github.com/kennethjiang/js-file-download)                   | MIT                |
+| [localforage](https://localforage.github.io/localForage/)                              | Apache License 2.0 |
+| [lodash](https://lodash.com/)                                                          | MIT                |
+| [lottie-web](https://airbnb.io/lottie)                                                 | MIT                |
+| [material-ui-confirm](https://github.com/jonatanklosko/material-ui-confirm)            | MIT                |
+| [mathjs](https://mathjs.org/)                                                          | Apache License 2.0 |
+| [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui)                   | WTFPL              |
+| [notistack](https://www.iamhosseindhv.com/notistack)                                   | MIT                |
+| [nzh](http://cnwhy.github.io/nzh)                                                      | MIT                |
+| [print-js](https://printjs.crabbly.com/)                                               | MIT                |
+| [prismjs](https://prismjs.com/)                                                        | MIT                |
+| [qs](https://github.com/ljharb/qs)                                                     | BSD-3-Clause       |
+| [react-apexcharts](https://www.npmjs.com/package/react-apexcharts)                     | MIT                |
+| [react-beautiful-dnd](https://react-beautiful-dnd.netlify.com)                         | Apache License 2.0 |
+| [react-big-calendar](https://jquense.github.io/react-big-calendar/examples/index.html) | MIT                |
+| [react-draggable](https://github.com/react-grid-layout/react-draggable)                | MIT                |
+| [react-dropzone](https://react-dropzone.js.org/)                                       | MIT                |
+| [react-helmet-async](https://github.com/staylor/react-helmet-async)                    | Apache License 2.0 |
+| [react-image-file-resizer](https://github.com/onurzorluer/react-image-file-resizer)    | MIT                |
+| [react-infinite-scroll-component](https://react-infinite-scroll-component.netlify.com) | MIT                |
+| [react-markdown](https://remarkjs.github.io/react-markdown/)                           | MIT                |
+| [react-number-format](https://github.com/s-yadav/react-number-format)                  | MIT                |
+| [react-perfect-scrollbar](https://www.npmjs.com/package/react-perfect-scrollbar)       | MIT                |
+| [react-window](react-window.now.sh)                                                    | MIT                |
+| [tai-password-strength](https://tests-always-included.github.io/password-strength/)    | MIT                |
+| [uuid](https://github.com/uuidjs/uuid)                                                 | MIT                |
+| [validate.js](http://validatejs.org/)                                                  | MIT                |
+| [web-vitals](https://web.dev/vitals)                                                   | MIT                |
+| [workbox](https://developers.google.com/web/tools/workbox)                             | MIT                |
 
 ## 目录结构
 

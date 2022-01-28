@@ -14,6 +14,7 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import zhHansLocale from 'date-fns/locale/zh-CN';
 import { SnackbarProvider, SnackbarKey } from 'notistack';
 import { ConfirmProvider } from 'material-ui-confirm';
+import { HelmetProvider } from 'react-helmet-async';
 import theme from 'theme';
 import { store } from 'store';
 import { RouterConfig } from 'routes';
@@ -69,15 +70,17 @@ const App: FC = function App() {
               action={handleSnackbar}
             >
               <ConfirmProvider>
-                <SessionProvider>
-                  <CssBaseline />
-                  <ServiceWorker serviceWorker={serviceWorkerRegistration} />
-                  <LogRocketIdentify />
-                  <BrowserRouter>
-                    <ScrollReset />
-                    <RouterConfig />
-                  </BrowserRouter>
-                </SessionProvider>
+                <HelmetProvider>
+                  <SessionProvider>
+                    <CssBaseline />
+                    <ServiceWorker serviceWorker={serviceWorkerRegistration} />
+                    <LogRocketIdentify />
+                    <BrowserRouter>
+                      <ScrollReset />
+                      <RouterConfig />
+                    </BrowserRouter>
+                  </SessionProvider>
+                </HelmetProvider>
               </ConfirmProvider>
             </SnackbarProvider>
           </LocalizationProvider>

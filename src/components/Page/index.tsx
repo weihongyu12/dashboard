@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Box, BoxProps } from '@mui/material';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 export interface PageProps extends BoxProps {
   /**
