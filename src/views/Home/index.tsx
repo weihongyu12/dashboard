@@ -1,11 +1,11 @@
 import React, { useContext, FC } from 'react';
 import { Grid, Typography } from '@mui/material';
 import { makeStyles, createStyles } from '@mui/styles';
-import { useTheme, Theme } from '@mui/material/styles';
+import { Theme } from '@mui/material/styles';
 import { format } from 'date-fns';
 import zhHansLocale from 'date-fns/locale/zh-CN';
 import { AuthGuard, Page, SessionContext } from 'components';
-import { ReactComponent as HappySvg } from './assets/undraw_happy_2021_h01d.svg';
+import { ReactComponent as NewYearSvg } from './assets/undraw_new_year_2022_bxec.svg';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     },
   },
   svg: {
-    width: 491,
-    height: 297,
+    width: 489,
+    height: 343,
     maxWidth: '100%',
   },
 }));
@@ -49,7 +49,7 @@ const Home: FC = function Home() {
             </Typography>
           </Grid>
           <Grid item>
-            <HappySvg className={classes.svg} />
+            <NewYearSvg className={classes.svg} />
           </Grid>
         </Grid>
       </Page>
