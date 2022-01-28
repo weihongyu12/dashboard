@@ -34,7 +34,8 @@
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "analyze": "node scripts/build.js --report"
+    "analyze": "node scripts/build.js --report",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@capacitor/action-sheet": "^1.0.6",
@@ -222,7 +223,7 @@
     "glob-all": "^3.2.1",
     "html-webpack-plugin": "^5.5.0",
     "http-proxy-middleware": "^2.0.1",
-    "husky": "^4.3.8",
+    "husky": "^7.0.0",
     "identity-obj-proxy": "^3.0.0",
     "image-minimizer-webpack-plugin": "^3.1.2",
     "imagemin": "^8.0.1",
@@ -233,7 +234,7 @@
     "jest": "^27.4.3",
     "jest-resolve": "^27.4.2",
     "jest-watch-typeahead": "^1.0.0",
-    "lint-staged": "^11.2.0",
+    "lint-staged": "^12.3.2",
     "lodash-webpack-plugin": "^0.11.6",
     "mini-css-extract-plugin": "^2.4.5",
     "nightwatch": "^1.7.12",
@@ -272,20 +273,6 @@
   "engines": {
     "node": ">= 16.13.0",
     "npm": ">= 7.0.0"
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix"
-    ],
-    "src/**/*.{css,scss,jsx,tsx}": [
-      "stylelint --fix"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -e $GIT_PARAMS"
-    }
   },
   "build": {
     "files": [
