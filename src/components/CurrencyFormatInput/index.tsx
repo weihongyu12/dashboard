@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import NumberFormat from 'react-number-format';
+import NumberFormat, { NumberFormatProps } from 'react-number-format';
 
 type CurrencyFormatInputProps = {
-  inputRef: (instance: NumberFormat | null) => void;
+  inputRef: (instance: NumberFormat<NumberFormatProps> | null) => void;
   onChange: (event: { target: { name: string; value: string } }) => void;
   name: string;
   /**
@@ -25,7 +25,7 @@ const CurrencyFormatInput: FC<CurrencyFormatInputProps> = function CurrencyForma
 }) {
   return (
     <NumberFormat
-    /* eslint-disable-next-line react/jsx-props-no-spreading */
+      /* eslint-disable-next-line react/jsx-props-no-spreading */
       {...rest}
       getInputRef={inputRef}
       onValueChange={(values) => {
