@@ -1,51 +1,29 @@
 import React, { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import {
+  Box,
   Typography,
   Button,
   useMediaQuery,
-  Theme,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { makeStyles, createStyles } from '@mui/styles';
 import Page from 'components/Page';
 import PageNotFoundImage from './images/undraw_page_not_found_su7k.svg';
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  root: {
-    padding: theme.spacing(3),
-    paddingTop: '10vh',
-    display: 'flex',
-    flexDirection: 'column',
-    alignContent: 'center',
-  },
-  imageContainer: {
-    marginTop: theme.spacing(6),
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  image: {
-    maxWidth: '100%',
-    width: 560,
-    maxHeight: 300,
-    height: 'auto',
-  },
-  buttonContainer: {
-    marginTop: theme.spacing(6),
-    display: 'flex',
-    justifyContent: 'center',
-  },
-}));
-
 const Error404: FC = function Error404() {
-  const classes = useStyles();
   const theme = useTheme();
   const mobileDevice = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <Page
-      className={classes.root}
       title="Error 404"
+      sx={{
+        p: 3,
+        pt: '10vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignContent: 'center',
+      }}
     >
       <Typography
         align="center"
@@ -59,14 +37,32 @@ const Error404: FC = function Error404() {
       >
         您进入的页面不存在或已经删除，您可能错误地来到了这里。无论是哪种方式，请尝试返回后重新跳转
       </Typography>
-      <div className={classes.imageContainer}>
-        <img
-          alt="Under development"
-          className={classes.image}
+      <Box
+        sx={{
+          mt: 6,
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <Box
+          component="img"
           src={PageNotFoundImage}
+          alt="Under development"
+          sx={{
+            maxWidth: '100%',
+            width: 560,
+            maxHeight: 300,
+            height: 'auto',
+          }}
         />
-      </div>
-      <div className={classes.buttonContainer}>
+      </Box>
+      <Box
+        sx={{
+          mt: 6,
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
         <Button
           color="primary"
           component={RouterLink}
@@ -75,7 +71,7 @@ const Error404: FC = function Error404() {
         >
           返回首页
         </Button>
-      </div>
+      </Box>
     </Page>
   );
 };

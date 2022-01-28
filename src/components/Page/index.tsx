@@ -1,26 +1,33 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
+import { Box, BoxProps } from '@mui/material';
 import { Helmet } from 'react-helmet';
 
-export interface PageProps {
+export interface PageProps extends BoxProps {
   /**
    * 页面标题
    */
   title: string;
-  children: ReactNode;
-  /**
-   * 组件样式
-   */
-  className?: string;
 }
 
-const Page: FC<PageProps> = function Page({ title, children, className = '' }) {
+const Page: FC<PageProps> = function Page({
+  title,
+  children,
+  component = 'div',
+  sx = {},
+}) {
   return (
-    <div className={className} data-testid="page">
+    <Box
+      component={component}
+      sx={{
+        ...sx,
+      }}
+      data-testid="page"
+    >
       <Helmet>
         <title>{title}</title>
       </Helmet>
       {children}
-    </div>
+    </Box>
   );
 };
 

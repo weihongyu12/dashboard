@@ -4,9 +4,9 @@ import React, {
   FC,
   ChangeEvent,
 } from 'react';
-import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
 import {
+  Box,
   Card,
   CardContent,
   List,
@@ -15,56 +15,25 @@ import {
   ListItemText,
   Pagination,
   Typography,
-  Theme,
+  useTheme,
+  CardProps,
 } from '@mui/material';
 import {
   Mail as MailIcon,
   Drafts as DraftsIcon,
 } from '@mui/icons-material';
-import { makeStyles, createStyles } from '@mui/styles';
-import clsx from 'clsx';
 import { format, parseISO } from 'date-fns';
 import zhHansLocale from 'date-fns/locale/zh-CN';
 import { messageService } from 'service';
 import { ReactComponent as MailboxSvg } from 'assets/images/undraw_Mailbox_re_dvds.svg';
 import { Message } from 'types';
 
-export interface NoticeProps {
-  className?: string;
-}
-
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  root: {},
-  content: {
-    padding: 0,
-  },
-  blank: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-    padding: theme.spacing(3),
-  },
-  mailboxSvg: {
-    width: 163,
-    height: 140,
-  },
-  pagination: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItem: 'center',
-    [theme.breakpoints.down('md')]: {
-      justifyContent: 'center',
-    },
-  },
-}));
-
-const Notice: FC<NoticeProps> = function Notice({ className = '' }) {
-  const classes = useStyles();
-
+const Notice: FC<CardProps> = function Notice({ sx = {} }) {
   const [list, setList] = useState<Message[]>([]);
   const [page, setPage] = useState<number>(1);
   const [total, setTotal] = useState<number>(0);
+
+  const theme = useTheme();
 
   const fetchData = async (currentPage: number) => {
     const response = await messageService.index({
@@ -90,16 +59,38 @@ const Notice: FC<NoticeProps> = function Notice({ className = '' }) {
   }, [page]);
 
   return (
-    <Card className={clsx(classes.root, className)}>
-      <CardContent className={classes.content}>
+    <Card
+      sx={{
+        ...sx,
+      }}
+    >
+      <CardContent
+        sx={{
+          p: 0,
+        }}
+      >
         {
           list.length === 0 ? (
-            <div className={classes.blank}>
-              <MailboxSvg className={classes.mailboxSvg} />
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'column',
+                p: 3,
+              }}
+            >
+              <Box
+                component={MailboxSvg}
+                sx={{
+                  width: 163,
+                  height: 140,
+                }}
+              />
               <Typography variant="h4" align="center">
                 您没有收到任何消息
               </Typography>
-            </div>
+            </Box>
           ) : (
             <>
               <List>
@@ -146,28 +137,29 @@ const Notice: FC<NoticeProps> = function Notice({ className = '' }) {
                   ))
                 }
               </List>
-              <div className={classes.pagination}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                  alignItem: 'center',
+                  [theme.breakpoints.down('md')]: {
+                    justifyContent: 'center',
+                  },
+                }}
+              >
                 <Pagination
                   page={page}
                   count={total}
                   color="primary"
                   onChange={handleChange}
                 />
-              </div>
+              </Box>
             </>
           )
         }
       </CardContent>
     </Card>
   );
-};
-
-Notice.propTypes = {
-  className: PropTypes.string,
-};
-
-Notice.defaultProps = {
-  className: '',
 };
 
 export default Notice;

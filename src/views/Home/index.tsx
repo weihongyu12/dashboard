@@ -1,38 +1,36 @@
 import React, { useContext, FC } from 'react';
-import { Grid, Typography } from '@mui/material';
-import { makeStyles, createStyles } from '@mui/styles';
-import { Theme } from '@mui/material/styles';
+import {
+  Box,
+  Grid,
+  Typography,
+} from '@mui/material';
 import { format } from 'date-fns';
 import zhHansLocale from 'date-fns/locale/zh-CN';
 import { AuthGuard, Page, SessionContext } from 'components';
 import { ReactComponent as NewYearSvg } from './assets/undraw_new_year_2022_bxec.svg';
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  root: {
-    padding: theme.spacing(8, 3),
-  },
-  welcome: {
-    [theme.breakpoints.down('md')]: {
-      width: '100%',
-    },
-  },
-  svg: {
-    width: 489,
-    height: 343,
-    maxWidth: '100%',
-  },
-}));
-
 const Home: FC = function Home() {
-  const classes = useStyles();
-
   const { session } = useContext(SessionContext);
 
   return (
     <AuthGuard roles={['ADMINISTRATOR']}>
-      <Page title="工作台" className={classes.root}>
+      <Page
+        title="工作台"
+        sx={{
+          px: 8,
+          py: 3,
+        }}
+      >
         <Grid container justifyContent="space-around" alignItems="center">
-          <Grid item className={classes.welcome}>
+          <Grid
+            item
+            sx={{
+              width: {
+                sm: '100%',
+                md: 'auto',
+              },
+            }}
+          >
             <Typography
               component="h1"
               variant="h3"
@@ -49,7 +47,14 @@ const Home: FC = function Home() {
             </Typography>
           </Grid>
           <Grid item>
-            <NewYearSvg className={classes.svg} />
+            <Box
+              component={NewYearSvg}
+              sx={{
+                width: 489,
+                height: 343,
+                maxWidth: '100%',
+              }}
+            />
           </Grid>
         </Grid>
       </Page>

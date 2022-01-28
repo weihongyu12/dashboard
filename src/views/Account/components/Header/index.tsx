@@ -1,27 +1,19 @@
 import React, { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import {
+  Box,
   Breadcrumbs,
   Link,
   Typography,
+  BoxProps,
 } from '@mui/material';
-import { makeStyles, createStyles } from '@mui/styles';
-import clsx from 'clsx';
 
-export interface HeaderProps {
-  className?: string,
-}
-
-const useStyles = makeStyles(() => createStyles({
-  root: {},
-}));
-
-const Header: FC<HeaderProps> = function Header({ className = '' }) {
-  const classes = useStyles();
-
+const Header: FC<BoxProps> = function Header({ sx = {} }) {
   return (
-    <div
-      className={clsx(classes.root, className)}
+    <Box
+      sx={{
+        ...sx,
+      }}
     >
       <Breadcrumbs aria-label="breadcrumb">
         <Link
@@ -44,7 +36,7 @@ const Header: FC<HeaderProps> = function Header({ className = '' }) {
       >
         个人中心
       </Typography>
-    </div>
+    </Box>
   );
 };
 

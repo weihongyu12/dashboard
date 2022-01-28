@@ -7,8 +7,8 @@ import React, {
   ChangeEventHandler,
   MouseEventHandler,
 } from 'react';
-import clsx from 'clsx';
 import {
+  Box,
   Card,
   CardHeader,
   CardContent,
@@ -18,6 +18,7 @@ import {
   Stack,
   TextField,
   Typography,
+  CardProps,
 } from '@mui/material';
 import {
   red,
@@ -26,7 +27,6 @@ import {
   green,
   grey,
 } from '@mui/material/colors';
-import { makeStyles, createStyles } from '@mui/styles';
 import { useSnackbar } from 'notistack';
 import { useConfirm } from 'material-ui-confirm';
 import validate from 'validate.js';
@@ -35,12 +35,8 @@ import taiPasswordStrength from 'tai-password-strength';
 import { SessionContext } from 'components';
 import { accountService } from 'service';
 
-export interface SecurityProps {
-  className?: string;
-}
-
 interface PasswordStrengthStyle {
-  [key: string]: string;
+  [key: string]: Record<string, string>;
 }
 
 interface PasswordStrengthText {
@@ -66,41 +62,6 @@ interface FormState {
   touched: FormStateTouched;
 }
 
-const useStyles = makeStyles(() => createStyles({
-  root: {},
-  saveButton: {
-    color: '#fff',
-    backgroundColor: green[600],
-    '&:hover': {
-      backgroundColor: green[900],
-    },
-  },
-  passwordStrength: {
-    width: '100%',
-    height: 36,
-    backgroundColor: grey[200],
-    borderRadius: 4,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  passwordStrengthVeryWeak: {
-    backgroundImage: `linear-gradient(to right, ${red[900]}, ${red[900]} 20%, ${grey[200]} 20%)`,
-  },
-  passwordStrengthWeak: {
-    backgroundImage: `linear-gradient(to right, ${red[500]}, ${red[500]} 40%, ${grey[200]} 40%)`,
-  },
-  passwordStrengthReasonable: {
-    backgroundImage: `linear-gradient(to right, ${yellow[500]}, ${yellow[500]} 60%, ${grey[200]} 60%)`,
-  },
-  passwordStrengthStrong: {
-    backgroundImage: `linear-gradient(to right, ${lightGreen[500]}, ${lightGreen[500]} 80%, ${grey[200]} 80%)`,
-  },
-  passwordStrengthVeryStrong: {
-    backgroundImage: `linear-gradient(to right, ${green[500]}, ${green[500]} 100%, ${green[200]} 100%)`,
-  },
-}));
-
 const strengthTester = new taiPasswordStrength.PasswordStrength();
 
 const passwordStrengthText: PasswordStrengthText = {
@@ -111,6 +72,24 @@ const passwordStrengthText: PasswordStrengthText = {
   VERY_STRONG: '非常强',
 };
 
+const passwordStrengthStyle: PasswordStrengthStyle = {
+  VERY_WEAK: {
+    backgroundImage: `linear-gradient(to right, ${red[900]}, ${red[900]} 20%, ${grey[200]} 20%)`,
+  },
+  WEAK: {
+    backgroundImage: `linear-gradient(to right, ${red[500]}, ${red[500]} 40%, ${grey[200]} 40%)`,
+  },
+  REASONABLE: {
+    backgroundImage: `linear-gradient(to right, ${yellow[500]}, ${yellow[500]} 60%, ${grey[200]} 60%)`,
+  },
+  STRONG: {
+    backgroundImage: `linear-gradient(to right, ${lightGreen[500]}, ${lightGreen[500]} 80%, ${grey[200]} 80%)`,
+  },
+  VERY_STRONG: {
+    backgroundImage: `linear-gradient(to right, ${green[500]}, ${green[500]} 100%, ${green[200]} 100%)`,
+  },
+};
+
 const stackWidth = (col: number) => {
   let result = divide(col, 12);
   result = multiply(result, 100);
@@ -118,9 +97,7 @@ const stackWidth = (col: number) => {
   return `${result}%`;
 };
 
-const Security: FC<SecurityProps> = function Security({ className = '' }) {
-  const classes = useStyles();
-
+const Security: FC<CardProps> = function Security({ sx = {} }) {
   const [formState, setFormState] = useState<FormState>({
     isValid: false,
     values: {
@@ -247,19 +224,13 @@ const Security: FC<SecurityProps> = function Security({ className = '' }) {
     }
   };
 
-  const passwordStrengthStyle: PasswordStrengthStyle = {
-    VERY_WEAK: classes.passwordStrengthVeryWeak,
-    WEAK: classes.passwordStrengthWeak,
-    REASONABLE: classes.passwordStrengthReasonable,
-    STRONG: classes.passwordStrengthStrong,
-    VERY_STRONG: classes.passwordStrengthVeryStrong,
-  };
-
   const hasError = (field: string) => (!!(formState.touched[field] && formState.errors[field]));
 
   return (
     <Card
-      className={clsx(classes.root, className)}
+      sx={{
+        ...sx,
+      }}
     >
       <CardHeader title="更改密码" />
       <Divider />
@@ -315,15 +286,22 @@ const Security: FC<SecurityProps> = function Security({ className = '' }) {
             />
             {
               formState.values.password && (
-                <div
-                  className={
-                    clsx(classes.passwordStrength, passwordStrengthStyle[passwordStrengthCode])
-                  }
+                <Box
+                  sx={{
+                    width: '100%',
+                    height: 36,
+                    bgcolor: grey[200],
+                    borderRadius: 4,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    ...passwordStrengthStyle[passwordStrengthCode],
+                  }}
                 >
                   <Typography align="center">
                     {passwordStrengthText[passwordStrengthCode]}
                   </Typography>
-                </div>
+                </Box>
               )
             }
             <TextField
@@ -349,8 +327,8 @@ const Security: FC<SecurityProps> = function Security({ className = '' }) {
       <Divider />
       <CardActions>
         <Button
-          className={classes.saveButton}
           disabled={!formState.isValid}
+          color="success"
           variant="contained"
           onClick={handleSubmit}
         >

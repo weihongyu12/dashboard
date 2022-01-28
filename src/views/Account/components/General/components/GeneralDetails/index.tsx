@@ -19,24 +19,19 @@ import {
   Switch,
   TextField,
   Typography,
+  CardProps,
 } from '@mui/material';
 import {
   Email as EmailIcon,
   Language as LanguageIcon,
   PhoneAndroid as PhoneAndroidIcon,
 } from '@mui/icons-material';
-import { makeStyles, createStyles } from '@mui/styles';
-import clsx from 'clsx';
 import { useSnackbar } from 'notistack';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import validate from 'validate.js';
 import { SessionContext } from 'components';
 import { accountService, authService } from 'service';
-
-export interface GeneralDetailsProps {
-  className?: string;
-}
 
 interface FormStateValue {
   username: string;
@@ -54,13 +49,6 @@ interface FormState {
   errors: Record<string, any[]>;
   touched: Record<string, boolean>;
 }
-
-const useStyles = makeStyles(() => createStyles({
-  root: {},
-  actions: {
-    justifyContent: 'flex-end',
-  },
-}));
 
 const schema = {
   username: {
@@ -84,10 +72,7 @@ const schema = {
   },
 };
 
-const GeneralDetails: FC<GeneralDetailsProps> = function GeneralDetails(props) {
-  const classes = useStyles();
-  const { className } = props;
-
+const GeneralDetails: FC<CardProps> = function GeneralDetails({ sx = {} }) {
   const { session, onSetSession } = useContext(SessionContext);
   const { user } = session;
   const { enqueueSnackbar } = useSnackbar();
@@ -190,7 +175,9 @@ const GeneralDetails: FC<GeneralDetailsProps> = function GeneralDetails(props) {
   return (
     <form onSubmit={handleSubmit}>
       <Card
-        className={clsx(classes.root, className)}
+        sx={{
+          ...sx,
+        }}
       >
         <CardHeader title="个人信息" />
         <Divider />
@@ -318,7 +305,11 @@ const GeneralDetails: FC<GeneralDetailsProps> = function GeneralDetails(props) {
           </Grid>
         </CardContent>
         <Divider />
-        <CardActions className={classes.actions}>
+        <CardActions
+          sx={{
+            justifyContent: 'flex-end',
+          }}
+        >
           <Button type="submit" color="primary" variant="contained">保存更改</Button>
         </CardActions>
       </Card>

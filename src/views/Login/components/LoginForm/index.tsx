@@ -9,16 +9,15 @@ import React, {
 } from 'react';
 import { useNavigate, useLocation } from 'react-router';
 import {
+  Box,
   IconButton,
   Stack,
   TextField,
   Tooltip,
-  Theme,
+  BoxProps,
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-import { makeStyles, createStyles } from '@mui/styles';
 import validate from 'validate.js';
-import clsx from 'clsx';
 import { useSnackbar } from 'notistack';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -30,10 +29,6 @@ import qs from 'qs';
 import { isString } from 'lodash';
 import { SessionContext } from 'components';
 import { authService } from 'service';
-
-export interface LoginFormProps {
-  className?: string;
-}
 
 interface FormStateValue {
   username: string;
@@ -47,34 +42,13 @@ interface FormState {
   touched: Record<string, boolean>;
 }
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  root: {},
-  iconButton: {
-    color: '#fff',
-    opacity: 0.3,
-    '&:hover': {
-      opacity: 1,
-    },
+const iconButton = {
+  color: '#fff',
+  opacity: 0.3,
+  '&:hover': {
+    opacity: 1,
   },
-  iconButtonWeixin: {
-    backgroundColor: '#07c160',
-    '&:hover': {
-      backgroundColor: '#07c160',
-    },
-  },
-  iconButtonQQ: {
-    backgroundColor: '#12b7f5',
-    '&:hover': {
-      backgroundColor: '#12b7f5',
-    },
-  },
-  iconButtonWeibo: {
-    backgroundColor: '#e32529',
-    '&:hover': {
-      backgroundColor: '#e32529',
-    },
-  },
-}));
+};
 
 const schema = {
   username: {
@@ -85,10 +59,9 @@ const schema = {
   },
 };
 
-const LoginForm: FC<LoginFormProps> = function LoginForm({
-  className = '',
+const LoginForm: FC<BoxProps> = function LoginForm({
+  sx = {},
 }) {
-  const classes = useStyles();
   const { session, onSetSession } = useContext(SessionContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -246,9 +219,12 @@ const LoginForm: FC<LoginFormProps> = function LoginForm({
   const hasError = (field: string) => (!!(formState.touched[field] && formState.errors[field]));
 
   return (
-    <form
-      className={clsx(classes.root, className)}
+    <Box
+      component="form"
       onSubmit={handleSubmit}
+      sx={{
+        ...sx,
+      }}
     >
       <Stack spacing={2}>
         <TextField
@@ -297,23 +273,50 @@ const LoginForm: FC<LoginFormProps> = function LoginForm({
           sx={{ flexWrap: 'wrap' }}
         >
           <Tooltip title="微信账号登录">
-            <IconButton className={clsx(classes.iconButton, classes.iconButtonWeixin)} size="small">
+            <IconButton
+              sx={{
+                ...iconButton,
+                backgroundColor: '#07c160',
+                '&:hover': {
+                  backgroundColor: '#07c160',
+                },
+              }}
+              size="small"
+            >
               <FontAwesomeIcon icon={faWeixin} />
             </IconButton>
           </Tooltip>
           <Tooltip title="QQ账号登录">
-            <IconButton className={clsx(classes.iconButton, classes.iconButtonQQ)} size="small">
+            <IconButton
+              size="small"
+              sx={{
+                ...iconButton,
+                backgroundColor: '#12b7f5',
+                '&:hover': {
+                  backgroundColor: '#12b7f5',
+                },
+              }}
+            >
               <FontAwesomeIcon icon={faQq} />
             </IconButton>
           </Tooltip>
           <Tooltip title="微博账号登录">
-            <IconButton className={clsx(classes.iconButton, classes.iconButtonWeibo)} size="small">
+            <IconButton
+              size="small"
+              sx={{
+                ...iconButton,
+                backgroundColor: '#e32529',
+                '&:hover': {
+                  backgroundColor: '#e32529',
+                },
+              }}
+            >
               <FontAwesomeIcon icon={faWeibo} />
             </IconButton>
           </Tooltip>
         </Stack>
       </Stack>
-    </form>
+    </Box>
   );
 };
 

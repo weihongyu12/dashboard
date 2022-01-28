@@ -1,13 +1,13 @@
 import React, { FC, ChangeEvent } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import {
+  Box,
   Tabs,
   Tab,
   Divider,
-  Theme,
+  useTheme,
 } from '@mui/material';
 import { grey } from '@mui/material/colors';
-import { makeStyles, createStyles } from '@mui/styles';
 import { AuthGuard, Page } from 'components';
 import {
   Header,
@@ -16,31 +16,14 @@ import {
   Notice,
 } from './components';
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  root: {
-    width: theme.breakpoints.values.lg,
-    maxWidth: '100%',
-    margin: '0 auto',
-    padding: theme.spacing(3),
-  },
-  tabs: {
-    marginTop: theme.spacing(3),
-  },
-  divider: {
-    backgroundColor: grey[300],
-  },
-  content: {
-    marginTop: theme.spacing(3),
-  },
-}));
-
 const Account: FC = function Account() {
-  const classes = useStyles();
   const navigate = useNavigate();
   const { tab } = useParams();
 
+  const theme = useTheme();
+
   const handleTabsChange = (event: ChangeEvent<unknown>, value: string) => {
-    navigate(value);
+    navigate(`/account/${value}`);
   };
 
   const tabs = [
@@ -60,16 +43,23 @@ const Account: FC = function Account() {
   return (
     <AuthGuard roles={['GENERAL_USER', 'ADMINISTRATOR']}>
       <Page
-        className={classes.root}
         title="个人中心"
+        sx={{
+          width: theme.breakpoints.values.lg,
+          maxWidth: '100%',
+          m: '0 auto',
+          p: 3,
+        }}
       >
         <Header />
         <Tabs
-          className={classes.tabs}
           onChange={handleTabsChange}
           scrollButtons="auto"
           value={tab}
           variant="scrollable"
+          sx={{
+            mt: 3,
+          }}
         >
           {tabs.map((tabItem) => (
             <Tab
@@ -79,12 +69,20 @@ const Account: FC = function Account() {
             />
           ))}
         </Tabs>
-        <Divider className={classes.divider} />
-        <div className={classes.content}>
+        <Divider
+          sx={{
+            bgcolor: grey[300],
+          }}
+        />
+        <Box
+          sx={{
+            mt: 3,
+          }}
+        >
           {tab === 'general' && <General />}
           {tab === 'security' && <Security />}
           {tab === 'notice' && <Notice />}
-        </div>
+        </Box>
       </Page>
     </AuthGuard>
   );

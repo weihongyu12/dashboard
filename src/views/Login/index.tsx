@@ -1,16 +1,16 @@
 import React, { useEffect, FC } from 'react';
 import { Link as RouterLink, useNavigate, useLocation } from 'react-router-dom';
 import {
+  Box,
   Card,
   CardContent,
   CardMedia,
   Divider,
   Link,
   Typography,
-  Theme,
+  useTheme,
 } from '@mui/material';
 import { Lock as LockIcon } from '@mui/icons-material';
-import { makeStyles, createStyles } from '@mui/styles';
 import qs from 'qs';
 import { format } from 'date-fns';
 import { Page, BrowserAlert } from 'components';
@@ -20,70 +20,11 @@ import ImageAuth from './assets/auth.png';
 
 const { REACT_APP_TITLE } = process.env;
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  root: {
-    minHeight: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: theme.spacing(5, 2),
-  },
-  card: {
-    width: theme.breakpoints.values.md,
-    maxWidth: '100%',
-    overflow: 'unset',
-    display: 'flex',
-    position: 'relative',
-    '& > *': {
-      flexGrow: 1,
-      flexBasis: '50%',
-      width: '50%',
-    },
-  },
-  content: {
-    padding: theme.spacing(8, 4, 3, 4),
-  },
-  media: {
-    borderTopRightRadius: 4,
-    borderBottomRightRadius: 4,
-    padding: theme.spacing(3),
-    color: '#fff',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-    [theme.breakpoints.down('lg')]: {
-      display: 'none',
-    },
-  },
-  icon: {
-    backgroundImage: gradients.green,
-    color: '#fff',
-    borderRadius: theme.shape.borderRadius,
-    padding: theme.spacing(1),
-    position: 'absolute',
-    top: -32,
-    left: theme.spacing(3),
-    height: 64,
-    width: 64,
-    fontSize: 32,
-  },
-  loginForm: {
-    marginTop: theme.spacing(3),
-  },
-  divider: {
-    margin: theme.spacing(2, 0),
-  },
-  copyright: {
-    marginTop: theme.spacing(2),
-    display: 'flex',
-  },
-}));
-
 const Login: FC = function Login() {
-  const classes = useStyles();
-
   const navigate = useNavigate();
   const location = useLocation();
+
+  const theme = useTheme();
 
   useEffect(() => {
     const { search } = location;
@@ -99,12 +40,51 @@ const Login: FC = function Login() {
 
   return (
     <Page
-      className={classes.root}
       title="登录"
+      sx={{
+        minHeight: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        px: 2,
+        py: 5,
+      }}
     >
-      <Card className={classes.card}>
-        <CardContent className={classes.content}>
-          <LockIcon className={classes.icon} />
+      <Card
+        sx={{
+          width: theme.breakpoints.values.md,
+          maxWidth: '100%',
+          overflow: 'unset',
+          display: 'flex',
+          position: 'relative',
+          '& > *': {
+            flexGrow: 1,
+            flexBasis: '50%',
+            width: '50%',
+          },
+        }}
+      >
+        <CardContent
+          sx={{
+            pt: 8,
+            pb: 3,
+            px: 4,
+          }}
+        >
+          <LockIcon
+            sx={{
+              backgroundImage: gradients.green,
+              color: '#fff',
+              borderRadius: theme.shape.borderRadius,
+              p: 1,
+              position: 'absolute',
+              top: -32,
+              left: theme.spacing(3),
+              height: 64,
+              width: 64,
+              fontSize: 32,
+            }}
+          />
           <Typography
             gutterBottom
             variant="h3"
@@ -115,8 +95,17 @@ const Login: FC = function Login() {
             {REACT_APP_TITLE}
           </Typography>
           <BrowserAlert />
-          <LoginForm className={classes.loginForm} />
-          <Divider className={classes.divider} />
+          <LoginForm
+            sx={{
+              mt: 3,
+            }}
+          />
+          <Divider
+            sx={{
+              mx: 0,
+              my: 2,
+            }}
+          />
           <Link
             align="center"
             color="secondary"
@@ -129,23 +118,37 @@ const Login: FC = function Login() {
           </Link>
         </CardContent>
         <CardMedia
-          className={classes.media}
           image={ImageAuth}
+          sx={{
+            borderTopRightRadius: 4,
+            borderBottomRightRadius: 4,
+            padding: 3,
+            color: '#fff',
+            display: {
+              md: 'flex',
+              sm: 'none',
+            },
+            flexDirection: 'column',
+            justifyContent: 'flex-end',
+          }}
         >
-          <div className={classes.copyright}>
-            <div>
-              <Typography
-                color="inherit"
-                variant="body2"
-              >
-                Copyright &copy;
-                {' '}
-                {format(new Date(), 'yyyy')}
-                {' '}
-                weihongyu12 保留所有权利
-              </Typography>
-            </div>
-          </div>
+          <Box
+            sx={{
+              mt: 2,
+              display: 'flex',
+            }}
+          >
+            <Typography
+              color="inherit"
+              variant="body2"
+            >
+              Copyright &copy;
+              {' '}
+              {format(new Date(), 'yyyy')}
+              {' '}
+              weihongyu12 保留所有权利
+            </Typography>
+          </Box>
         </CardMedia>
       </Card>
     </Page>

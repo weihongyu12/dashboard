@@ -4,7 +4,7 @@ import {
   CardContent,
   Avatar,
   Typography,
-  Theme,
+  CardProps,
 } from '@mui/material';
 import {
   red,
@@ -27,13 +27,7 @@ import {
   grey,
   blueGrey,
 } from '@mui/material/colors';
-import { makeStyles, createStyles } from '@mui/styles';
-import clsx from 'clsx';
 import { SessionContext } from 'components';
-
-export interface ProfileDetailsProps {
-  className?: string;
-}
 
 const avatarColorPalettes = [
   red[600],
@@ -62,47 +56,40 @@ const avatarColor = (string: string) => {
   return avatarColorPalettes[index];
 };
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  root: {},
-  content: {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'column',
-    textAlgin: 'center',
-  },
-  name: {
-    marginTop: theme.spacing(1),
-  },
-  avatar: {
-    height: 100,
-    width: 100,
-  },
-  removeBotton: {
-    width: '100%',
-  },
-}));
-
-const ProfileDetails: FC<ProfileDetailsProps> = function ProfileDetails({ className = '' }) {
-  const classes = useStyles();
-
+const ProfileDetails: FC<CardProps> = function ProfileDetails({ sx = {} }) {
   const { session } = useContext(SessionContext);
   const { user } = session;
 
   return (
     <Card
-      className={clsx(classes.root, className)}
+      sx={{
+        ...sx,
+      }}
     >
-      <CardContent className={classes.content}>
+      <CardContent
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          flexDirection: 'column',
+          textAlign: 'center',
+        }}
+      >
         {
           user?.avatar ? (
             <Avatar
-              className={classes.avatar}
               src={user.avatar}
+              sx={{
+                height: 100,
+                width: 100,
+              }}
             />
           ) : (
             <Avatar
               alt="Supplier"
-              className={classes.avatar}
+              sx={{
+                height: 100,
+                width: 100,
+              }}
               style={user?.username ? { backgroundColor: avatarColor(user.username) } : {}}
             >
               {user?.username}
@@ -110,9 +97,11 @@ const ProfileDetails: FC<ProfileDetailsProps> = function ProfileDetails({ classN
           )
         }
         <Typography
-          className={classes.name}
           gutterBottom
           variant="h3"
+          sx={{
+            mt: 1,
+          }}
         >
           {user?.username}
         </Typography>

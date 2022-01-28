@@ -1,25 +1,15 @@
 import React, { FC } from 'react';
-import clsx from 'clsx';
-import { Grid } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+import { Grid, GridProps } from '@mui/material';
 import { ProfileDetails, GeneralDetails } from './components';
 
-export interface GeneralProps {
-  className?: string;
-}
-
-const useStyles = makeStyles(() => ({
-  root: {},
-}));
-
-const General: FC<GeneralProps> = function General({ className = '' }) {
-  const classes = useStyles();
-
+const General: FC<GridProps> = function General({ sx = {} }) {
   return (
     <Grid
-      className={clsx(classes.root, className)}
       container
       spacing={3}
+      sx={{
+        ...sx,
+      }}
     >
       <Grid
         item

@@ -5,8 +5,6 @@ import React, {
   FC,
 } from 'react';
 import { Stack } from '@mui/material';
-import { createStyles, makeStyles } from '@mui/styles';
-import { Theme } from '@mui/material/styles';
 import { useSnackbar } from 'notistack';
 import AuthGuard from 'components/AuthGuard';
 import Page from 'components/Page';
@@ -17,14 +15,7 @@ import SearchBar from './components/SearchBar';
 import { FilterResult } from './components/SearchBar/components/Filter';
 import Result, { Field } from './components/Result';
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  root: {
-    padding: theme.spacing(3),
-  },
-}));
-
 const TableList: FC = function TableList() {
-  const classes = useStyles();
   const [data, setData] = useState<PersonResponse[]>([]);
   const [pages, setPages] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
@@ -97,7 +88,12 @@ const TableList: FC = function TableList() {
 
   return (
     <AuthGuard roles={['ADMINISTRATOR']}>
-      <Page title="表格列表" className={classes.root}>
+      <Page
+        title="表格列表"
+        sx={{
+          p: 3,
+        }}
+      >
         <Stack spacing={2}>
           <Header />
           <SearchBar
